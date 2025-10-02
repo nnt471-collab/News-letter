@@ -5,10 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Báo Cáo Infographic Nông Nghiệp Việt Nam - Tháng 9/2025 (Bản Đầy Đủ)</title>
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Phosphor Icons -->
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
     <style>
         body {
@@ -31,17 +34,66 @@
         
         .highlight-stat { font-weight: 700; color: #16a34a; }
         .highlight-stat-neg { font-weight: 700; color: #dc2626; }
+        
+        /* Tooltip Styles */
+        .tooltip-container {
+            position: relative;
+            display: inline-block;
+            cursor: help;
+        }
+        .tooltip-trigger {
+            font-size: 0.7em;
+            font-weight: bold;
+            color: #3b82f6;
+            vertical-align: super;
+            margin-left: 2px;
+            padding: 1px 4px;
+            border-radius: 4px;
+            background-color: #eff6ff;
+        }
+        .tooltip-text {
+            visibility: hidden;
+            width: 320px;
+            background-color: #1f2937;
+            color: #fff;
+            text-align: left;
+            border-radius: 6px;
+            padding: 10px;
+            position: absolute;
+            z-index: 10;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -160px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 0.875rem;
+            line-height: 1.5;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.5);
+        }
+        .tooltip-container:hover .tooltip-text {
+            visibility: visible;
+            opacity: 1;
+        }
+        .tooltip-link {
+            display: block;
+            margin-top: 5px;
+            color: #60a5fa;
+            text-decoration: underline;
+            word-break: break-all;
+        }
     </style>
 </head>
 
 <body class="text-gray-800">
 
     <div class="w-full p-4 sm:p-6 md:px-10 lg:px-16">
+        <!-- Header Section -->
         <header class="text-center mb-12">
             <h1 class="text-4xl md:text-5xl font-extrabold text-green-900">Báo Cáo Toàn Cảnh Ngành Nông Nghiệp Việt Nam</h1>
             <p class="text-xl md:text-2xl text-green-700 mt-2">Phân Tích Chi Tiết Thị Trường & Tác Động - Tháng 9/2025</p>
         </header>
 
+        <!-- Executive Summary Section -->
         <section class="mb-16">
             <h2 class="section-title text-3xl mb-8">Tóm Tắt Quản Trị</h2>
             <div class="card p-8 bg-lime-50 border-l-8 border-green-800">
@@ -66,45 +118,41 @@
             </div>
         </section>
 
+        <!-- Phần 1: Bối cảnh Vĩ mô -->
         <section class="mb-16">
             <h2 class="section-title text-3xl mb-8">Phần 1: Bối Cảnh Vĩ Mô Ngành Nông Nghiệp Việt Nam</h2>
             
             <h3 class="text-2xl font-bold text-green-800 mb-4">1.1. Tổng quan Kinh tế và Hiệu suất Ngành</h3>
             <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8">
-                <div class="card p-4 text-center"><h4 class="font-bold">Tổng XNK (9 tháng)</h4><p class="text-3xl font-bold text-blue-700 mt-1">637,22 <span class="text-xl">tỷ USD</span></p><p class="highlight-stat">(+17,2%)</p></div>
-                <div class="card p-4 text-center"><h4 class="font-bold">Thặng dư TM (9 tháng)</h4><p class="text-3xl font-bold text-green-700 mt-1">13,31 <span class="text-xl">tỷ USD</span></p></div>
-                <div class="card p-4 text-center"><h4 class="font-bold">XK NLS (8 tháng)</h4><p class="text-3xl font-bold text-yellow-700 mt-1">45,37 <span class="text-xl">tỷ USD</span></p><p class="highlight-stat">(+12%)</p></div>
-                <div class="card p-4 text-center"><h4 class="font-bold">PMI Sản xuất (T9)</h4><p class="text-3xl font-bold text-indigo-700 mt-1">50,4 <span class="text-xl">điểm</span></p></div>
+                <div class="card p-4 text-center"><h4 class="font-bold">Tổng XNK (9 tháng)</h4><p class="text-3xl font-bold text-blue-700 mt-1">637,22 <span class="text-xl">tỷ USD</span></p><p class="highlight-stat">(+17,2%) <span class="tooltip-container"><span class="tooltip-trigger">[i]</span><span class="tooltip-text">Nguồn 3: Công bố và thông tin - Tổng cục Hải quan.<a href="http://customs.gov.vn:8228/index.jsp?pageId=445" target="_blank" class="tooltip-link">Xem nguồn</a></span></span></p></div>
+                <div class="card p-4 text-center"><h4 class="font-bold">Thặng dư TM (9 tháng)</h4><p class="text-3xl font-bold text-green-700 mt-1">13,31 <span class="text-xl">tỷ USD</span><span class="tooltip-container"><span class="tooltip-trigger">[i]</span><span class="tooltip-text">Nguồn 3: Công bố và thông tin - Tổng cục Hải quan.<a href="http://customs.gov.vn:8228/index.jsp?pageId=445" target="_blank" class="tooltip-link">Xem nguồn</a></span></span></p></div>
+                <div class="card p-4 text-center"><h4 class="font-bold">XK NLS (8 tháng)</h4><p class="text-3xl font-bold text-yellow-700 mt-1">45,37 <span class="text-xl">tỷ USD</span></p><p class="highlight-stat">(+12%) <span class="tooltip-container"><span class="tooltip-trigger">[i]</span><span class="tooltip-text">Nguồn 8: Xuất khẩu nông, lâm, thủy sản tháng 8/2025: Tăng tốc mạnh, nhiều thách thức.<a href="https://ispae.vn/vn/tID13178_xuat-khau-nong-lam-thuy-san-thang-82025-tang-toc-manh-nhieu-thach-thuc.html" target="_blank" class="tooltip-link">Xem nguồn</a></span></span></p></div>
+                <div class="card p-4 text-center"><h4 class="font-bold">PMI Sản xuất (T9)</h4><p class="text-3xl font-bold text-indigo-700 mt-1">50,4 <span class="text-xl">điểm</span><span class="tooltip-container"><span class="tooltip-trigger">[i]</span><span class="tooltip-text">Nguồn 1: Ngành sản xuất Việt Nam cải thiện nhẹ trong tháng 9, số lượng đơn hàng mới tăng trở lại.<a href="https://vneconomy.vn/nganh-san-xuat-viet-nam-cai-thien-nhe-trong-thang-9-so-luong-don-hang-moi-tang-tro-lai.htm" target="_blank" class="tooltip-link">Xem nguồn</a></span></span></p></div>
             </div>
-            <div class="card p-6"><p class="text-center text-lg">Ngành nông nghiệp tiếp tục là điểm sáng, hướng tới mục tiêu xuất khẩu <span class="font-bold text-2xl text-green-700">65 tỷ USD</span> cho cả năm 2025. Tuy nhiên, có sự phân hóa rõ rệt: Ngành rau quả thành công, trong khi lúa gạo sụt giảm mạnh về giá trị dù tăng sản lượng.</p></div>
+            <div class="card p-6"><p class="text-center text-lg">Ngành nông nghiệp tiếp tục là điểm sáng, hướng tới mục tiêu xuất khẩu <span class="font-bold text-2xl text-green-700">65 tỷ USD</span> cho cả năm 2025.<span class="tooltip-container"><span class="tooltip-trigger">[i]</span><span class="tooltip-text">Nguồn 4: Xuất khẩu nông sản tăng trưởng, hướng tới 65 tỉ USD - Báo Lao Động.<a href="https://laodong.vn/kinh-doanh/xuat-khau-nong-san-tang-truong-huong-toi-65-ti-usd-1565696.ldo" target="_blank" class="tooltip-link">Xem nguồn</a></span></span> Tuy nhiên, có sự phân hóa rõ rệt: Ngành rau quả thành công, trong khi lúa gạo sụt giảm mạnh về giá trị dù tăng sản lượng.<span class="tooltip-container"><span class="tooltip-trigger">[i]</span><span class="tooltip-text">Nguồn 9: Xuất khẩu rau quả trong 9 tháng năm 2025 đạt hơn 6 tỷ USD - báo Hải Phòng.<a href="https://baohaiphong.vn/xuat-khau-rau-qua-trong-9-thang-nam-2025-dat-hon-6-ty-usd-522104.html" target="_blank" class="tooltip-link">Xem nguồn</a></span></span></p></div>
 
             <h3 class="text-2xl font-bold text-green-800 mt-10 mb-4">1.2. Chính sách và Môi trường Pháp lý</h3>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div class="card p-6">
                     <h4 class="font-bold text-lg mb-3">Văn bản Pháp quy Quan trọng</h4>
                     <ul class="space-y-3 list-disc list-inside">
-                        <li><span class="font-semibold">Công điện 150/CĐ-TTg (29/8/2025):</span> Siết chặt truy xuất nguồn gốc, đảm bảo chất lượng nông sản xuất khẩu.</li>
-                        <li><span class="font-semibold">Nghị định 183/2025/NĐ-CP:</span> Quy định mới về lâm nghiệp.</li>
-                        <li><span class="font-semibold">Nghị định 119/2025/NĐ-CP:</span> Giảm phát thải khí nhà kính, nhấn mạnh phát triển bền vững.</li>
+                        <li><span class="font-semibold">Công điện 150/CĐ-TTg (29/8/2025):</span> Siết chặt truy xuất nguồn gốc, đảm bảo chất lượng nông sản xuất khẩu.<span class="tooltip-container"><span class="tooltip-trigger">[i]</span><span class="tooltip-text">Nguồn 13: Tăng cường truy xuất nguồn gốc, đảm bảo chất lượng nông, lâm, thủy sản xuất khẩu.<a href="https://tapchikinhtetaichinh.vn/tang-cuong-truy-xuat-nguon-goc-dam-bao-chat-luong-nong-lam-thuy-san-xuat-khau.html" target="_blank" class="tooltip-link">Xem nguồn</a></span></span></li>
+                        <li><span class="font-semibold">Nghị định 183/2025/NĐ-CP & 119/2025/NĐ-CP:</span> Về lâm nghiệp và giảm phát thải khí nhà kính.<span class="tooltip-container"><span class="tooltip-trigger">[i]</span><span class="tooltip-text">Nguồn 16: Chính sách nông nghiệp và môi trường có hiệu lực từ 1/8.<a href="https://nongnghiepmoitruong.vn/chinh-sach-nong-nghiep-va-moi-truong-co-hieu-luc-tu-1-8-d765528.html" target="_blank" class="tooltip-link">Xem nguồn</a></span></span></li>
                     </ul>
                 </div>
                  <div class="card p-6">
                     <h4 class="font-bold text-lg mb-3">Mục tiêu & Hỗ trợ từ Chính phủ</h4>
                      <ul class="space-y-3 list-disc list-inside">
-                        <li>Đặt mục tiêu tăng trưởng ngành <span class="font-semibold">3,5% - 4%</span> trong năm 2025.</li>
-                        <li>Thúc đẩy hợp tác nâng cao giá trị sản phẩm.</li>
-                        <li>Tiến hành <span class="font-semibold">Tổng điều tra nông thôn, nông nghiệp 2025</span> để cung cấp dữ liệu hoạch định.</li>
+                        <li>Đặt mục tiêu tăng trưởng ngành <span class="font-semibold">3,5% - 4%</span> trong năm 2025.<span class="tooltip-container"><span class="tooltip-trigger">[i]</span><span class="tooltip-text">Nguồn 14: Thủ tướng: Năm 2025 ngành nông nghiệp phải tăng tốc bứt phá, tăng trưởng 3,5%-4%.<a href="https://vov.vn/chinh-tri/thu-tuong-nam-2025-nganh-nong-nghiep-phai-tang-toc-but-pha-tang-truong-35-4-post1145043.vov" target="_blank" class="tooltip-link">Xem nguồn</a></span></span></li>
+                        <li>Tiến hành <span class="font-semibold">Tổng điều tra nông thôn, nông nghiệp 2025</span>.<span class="tooltip-container"><span class="tooltip-trigger">[i]</span><span class="tooltip-text">Nguồn 18: Từ 1/7: Tổng điều tra nông thôn, nông nghiệp năm 2025.<a href="https://xaydungchinhsach.chinhphu.vn/tu-1-7-tong-dieu-tra-nong-thon-nong-nghiep-nam-2025-119250508134552326.htm" target="_blank" class="tooltip-link">Xem nguồn</a></span></span></li>
                     </ul>
                 </div>
             </div>
 
-            <h3 class="text-2xl font-bold text-green-800 mt-10 mb-4">1.3. Tác động từ Thiên tai và Biến đổi Khí hậu</h3>
+             <h3 class="text-2xl font-bold text-green-800 mt-10 mb-4">1.3. Tác động từ Thiên tai và Biến đổi Khí hậu</h3>
              <div class="card p-6 bg-red-50/50 border-l-4 border-red-500">
-                <p>Tháng 9 là tháng thời tiết cực đoan với <span class="font-bold">4 cơn bão liên tiếp</span> trên Biển Đông. <span class="font-bold">Bão số 10 (Bualoi)</span>, cơn bão mạnh nhất năm, gây thiệt hại kinh tế ước tính <span class="highlight-stat-neg">hàng nghìn tỷ đồng</span>.</p>
-                <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div><span class="font-semibold">Tây Ninh:</span> Thiệt hại 9 tháng đầu năm hơn <span class="highlight-stat-neg">8,2 tỷ đồng</span>.</div>
-                    <div><span class="font-semibold">Gia Lai, Khánh Hòa, Ninh Thuận:</span> Nguy cơ ngập úng, ảnh hưởng chất lượng nông sản.</div>
-                </div>
+                <p>Tháng 9 là tháng thời tiết cực đoan với <span class="font-bold">4 cơn bão liên tiếp</span> trên Biển Đông.<span class="tooltip-container"><span class="tooltip-trigger">[i]</span><span class="tooltip-text">Nguồn 19: 4 cơn bão liên tiếp trong tháng 9, dự báo tháng 10 thời tiết còn nhiều cực đoan.<a href="https://baomoi.com/4-con-bao-lien-tiep-trong-thang-9-du-bao-thang-10-thoi-tiet-con-nhieu-cuc-doan-c53382722.epi" target="_blank" class="tooltip-link">Xem nguồn</a></span></span> <span class="font-bold">Bão số 10 (Bualoi)</span> gây thiệt hại kinh tế ước tính <span class="highlight-stat-neg">hàng nghìn tỷ đồng</span>.<span class="tooltip-container"><span class="tooltip-trigger">[i]</span><span class="tooltip-text">Nguồn 26: Bão số 10 gây thiệt hại nặng nề, Thủ tướng chỉ đạo tập trung khắc phục nhanh hậu quả.<a href="https://baochinhphu.vn/thu-tuong-chi-dao-tap-trung-khac-phuc-nhanh-hau-qua-bao-so-10-va-mua-lu-102251002021745459.htm" target="_blank" class="tooltip-link">Xem nguồn</a></span></span></p>
+                <div class="mt-4"><span class="font-semibold">Tây Ninh:</span> Thiệt hại 9 tháng đầu năm hơn <span class="highlight-stat-neg">8,2 tỷ đồng</span>.<span class="tooltip-container"><span class="tooltip-trigger">[i]</span><span class="tooltip-text">Nguồn 31: Tây Ninh thiệt hại hơn 8,2 tỷ đồng do thiên tai trong 9 tháng năm 2025.<a href="https://thuonghieucongluan.com.vn/tay-ninh-thiet-hai-hon-8-2-ty-dong-do-thien-tai-trong-9-thang-nam-2025-a283075.html" target="_blank" class="tooltip-link">Xem nguồn</a></span></span></div>
              </div>
         </section>
         
@@ -115,28 +163,28 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div class="card p-6">
                     <h3 class="text-2xl font-bold mb-4">2.1. Thị trường Mía đường: Tâm điểm Chính sách</h3>
-                    <p class="mb-4">Giá đường thế giới ở mức thấp (<span class="font-bold">16,40 US cents/lb</span>) và tiêu thụ nội địa chậm. Rủi ro chiến lược lớn nhất là <span class="font-semibold">Quyết định 1686/QĐ-BCT</span> của Bộ Công Thương về việc rà soát cuối kỳ thuế CBPG & CTC đối với đường Thái Lan. Nếu thuế bị dỡ bỏ, đường Thái Lan giá rẻ sẽ gây ra cuộc chiến về giá khốc liệt.</p>
+                    <p class="mb-4">Giá đường thế giới ở mức thấp (<span class="font-bold">16,40 US cents/lb</span>)<span class="tooltip-container"><span class="tooltip-trigger">[i]</span><span class="tooltip-text">Nguồn 36: Giá đường thế giới - cập nhật giá trực tuyến liên tục.<a href="https://hct.vn/tin-tuc/gia-duong-the-gioi-cap-nhat-gia-truc-tuyen-lien-tuc-1570" target="_blank" class="tooltip-link">Xem nguồn</a></span></span>. Rủi ro lớn nhất là <span class="font-semibold">Quyết định 1686/QĐ-BCT</span> về việc rà soát thuế CBPG & CTC với đường Thái Lan.<span class="tooltip-container"><span class="tooltip-trigger">[i]</span><span class="tooltip-text">Nguồn 44: Bộ Công Thương ban hành Quyết định rà soát cuối kỳ việc áp dụng biện pháp chống bán phá giá và chống trợ cấp...<a href="https://moit.gov.vn/tin-tuc/thi-truong-nuoc-ngoai/tieu-de-bo-cong-thuong-ban-hanh-quyet-dinh-ra-soat-cuoi-ky-viec-ap-dung-bien-phap-chong-ban-pha-gia-va-chong-tro-cap-doi.html" target="_blank" class="tooltip-link">Xem nguồn</a></span></span></p>
                 </div>
                 <div class="card p-6">
-                    <h3 class="text-2xl font-bold mb-4">2.2. Thị trường Lúa gạo: Thách thức "Được mùa, mất giá"</h3>
+                    <h3 class="text-2xl font-bold mb-4">2.2. Thị trường Lúa gạo: "Được mùa, mất giá"</h3>
                     <div class="flex items-center justify-around text-center bg-gray-50 p-4 rounded-lg mb-4">
                         <div><p class="text-sm">Sản lượng XK (8T)</p><p class="text-3xl font-bold highlight-stat">+2,2%</p></div>
                         <div><p class="text-sm">Giá trị XK (8T)</p><p class="text-3xl font-bold highlight-stat-neg">-17,5%</p></div>
                         <div><p class="text-sm">Giá XK BQ (8T)</p><p class="text-3xl font-bold highlight-stat-neg">-19,3%</p></div>
                     </div>
-                    <p>Áp lực gia tăng khi <span class="font-semibold">Philippines tạm dừng nhập khẩu gạo 60 ngày (từ 1/9/2025)</span>, khiến thị trường trong nước trầm lắng. Chiến lược cần tập trung vào gạo chất lượng cao, hữu cơ để thoát khỏi cuộc chiến về giá.</p>
+                    <p>Số liệu trên theo Nguồn 11.<span class="tooltip-container"><span class="tooltip-trigger">[i]</span><span class="tooltip-text">Nguồn 11: Giá lúa gạo hôm nay ngày 28/9 và tuần qua: Thị trường trầm lắng.<a href="https://congthuong.vn/gia-lua-gao-hom-nay-ngay-28-9-va-tuan-qua-thi-truong-tram-lang-422760.html" target="_blank" class="tooltip-link">Xem nguồn</a></span></span> Áp lực gia tăng khi <span class="font-semibold">Philippines tạm dừng nhập khẩu</span>.<span class="tooltip-container"><span class="tooltip-trigger">[i]</span><span class="tooltip-text">Nguồn 12: Xuất khẩu gạo đối mặt với thách thức mới - VnEconomy.<a href="https://vneconomy.vn/xuat-khau-gao-doi-mat-voi-thach-thuc-moi.htm" target="_blank" class="tooltip-link">Xem nguồn</a></span></span></p>
                 </div>
                 <div class="card p-6">
-                    <h3 class="text-2xl font-bold mb-4">2.3. Thị trường Dừa: "Cơn sốt" giá & Cơ hội Đầu tư</h3>
-                    <p class="mb-4">Giá dừa khô tại ĐBSCL tăng lên mức kỷ lục <span class="font-bold text-green-600 text-3xl">215.000đ/chục</span>, <span class="highlight-stat">gấp 3 lần</span> cùng kỳ năm trước. Nguyên nhân chính là do nhu cầu xuất khẩu tăng cao (đặc biệt từ Trung Quốc) trong khi nguồn cung giảm. Đây là cơ hội đầu tư chiến lược để đa dạng hóa danh mục sản phẩm và thâm nhập chuỗi giá trị F&B.</p>
+                    <h3 class="text-2xl font-bold mb-4">2.3. Thị trường Dừa: "Cơn sốt" giá & Cơ hội</h3>
+                    <p class="mb-4">Giá dừa khô tại ĐBSCL tăng kỷ lục <span class="font-bold text-green-600 text-3xl">215.000đ/chục</span>, <span class="highlight-stat">gấp 3 lần</span> cùng kỳ.<span class="tooltip-container"><span class="tooltip-trigger">[i]</span><span class="tooltip-text">Nguồn 53: Giá dừa khô hôm nay Bến Tre, Trà Vinh, Vĩnh Long 30/09/2025.<a href="https://vnfoodpharmco.com/gia-dua-kho-hom-nay/" target="_blank" class="tooltip-link">Xem nguồn</a></span></span> Đây là cơ hội đầu tư chiến lược vào chuỗi giá trị F&B.</p>
                 </div>
                 <div class="card p-6">
                     <h3 class="text-2xl font-bold mb-4">2.4. Thị trường Chuối & Rau quả: Động lực Bền vững</h3>
                     <div class="flex items-center justify-around text-center bg-gray-50 p-4 rounded-lg mb-4">
-                        <div><p class="text-sm">XK Rau quả (9T)</p><p class="text-2xl font-bold text-yellow-600">6,11 tỷ USD</p><p class="highlight-stat">(+8,3%)</p></div>
-                        <div><p class="text-sm">XK Chuối (6T)</p><p class="text-2xl font-bold text-yellow-600">233 tr.USD</p><p class="highlight-stat">(+55%)</p></div>
+                        <div><p class="text-sm">XK Rau quả (9T)</p><p class="text-2xl font-bold text-yellow-600">6,11 tỷ USD</p><p class="highlight-stat">(+8,3%)<span class="tooltip-container"><span class="tooltip-trigger">[i]</span><span class="tooltip-text">Nguồn 9: Xuất khẩu rau quả trong 9 tháng năm 2025 đạt hơn 6 tỷ USD.<a href="https://baohaiphong.vn/xuat-khau-rau-qua-trong-9-thang-nam-2025-dat-hon-6-ty-usd-522104.html" target="_blank" class="tooltip-link">Xem nguồn</a></span></span></p></div>
+                        <div><p class="text-sm">XK Chuối (6T)</p><p class="text-2xl font-bold text-yellow-600">233 tr.USD</p><p class="highlight-stat">(+55%)<span class="tooltip-container"><span class="tooltip-trigger">[i]</span><span class="tooltip-text">Nguồn 54: Chuối Việt Nam dẫn đầu thị phần tại Trung Quốc.<a href="https://baochinhphu.vn/chuoi-viet-nam-dan-dau-thi-phan-tai-trung-quoc-tien-gan-cau-lac-bo-ty-usd-102250814104254559.htm" target="_blank" class="tooltip-link">Xem nguồn</a></span></span></p></div>
                     </div>
-                    <p>Chuối Việt Nam đang dần chiếm lĩnh thị phần tại Trung Quốc, vượt qua Philippines. Giá chuối tại vườn duy trì ở mức tốt (<span class="font-semibold">7.500 - 9.000 VNĐ/kg</span>), mang lại lợi nhuận cao và ổn định, là trụ cột tăng trưởng chiến lược.</p>
+                    <p>Giá chuối tại vườn duy trì ở mức tốt (<span class="font-semibold">7.500 - 9.000 VNĐ/kg</span>).<span class="tooltip-container"><span class="tooltip-trigger">[i]</span><span class="tooltip-text">Nguồn 56: Giá Chuối Hôm Nay Bao Nhiêu? Cập Nhật Giá Chuối Các Loại.<a href="https://airnano.vn/gia-chuoi/" target="_blank" class="tooltip-link">Xem nguồn</a></span></span></p>
                 </div>
             </div>
         </section>
@@ -150,11 +198,11 @@
                     <div class="space-y-8">
                         <div class="card p-6">
                             <h3 class="font-bold text-2xl mb-4 text-sky-800">3.1. Chuyển dịch Ngành F&B</h3>
-                            <p class="mb-4">Dự báo tăng trưởng <span class="font-bold text-sky-600">9,6%</span> trong năm 2025, được định hình bởi các xu hướng tiêu dùng mới: (1) Thực phẩm sạch, hữu cơ; (2) Cá nhân hóa sản phẩm; (3) Trải nghiệm kỹ thuật số; và (4) Sản phẩm nguồn gốc thực vật (plant-based).</p>
+                            <p class="mb-4">Dự báo tăng trưởng <span class="font-bold text-sky-600">9,6%</span> trong năm 2025<span class="tooltip-container"><span class="tooltip-trigger">[i]</span><span class="tooltip-text">Nguồn 58: Ngành F&B tại Việt Nam sẽ tiếp tục tăng trưởng 9,6% trong năm 2025.<a href="https://baochinhphu.vn/nganh-fb-tai-viet-nam-se-tiep-tuc-tang-truong-96-trong-nam-2025-102250319131429058.htm" target="_blank" class="tooltip-link">Xem nguồn</a></span></span>, định hình bởi xu hướng: thực phẩm sạch, cá nhân hóa, trải nghiệm số, và sản phẩm plant-based.<span class="tooltip-container"><span class="tooltip-trigger">[i]</span><span class="tooltip-text">Nguồn 61: Xu Hướng Khởi Nghiệp F&B Trong Năm 2025: Cơ Hội và Lời Khuyên.<a href="https://tuongviethoasen.vn/khoi-nghiep-thanh-cong-nganh-fb/xu-huong-khoi-nghiep-fb-trong-nam-2025-co-hoi-va-loi-khuyen-dat-gia.html" target="_blank" class="tooltip-link">Xem nguồn</a></span></span></p>
                         </div>
                         <div class="card p-6">
                             <h3 class="font-bold text-2xl mb-4 text-lime-800">3.2. Thị trường Carbon: "Kinh tế Xanh"</h3>
-                            <p class="mb-4">Chính phủ thí điểm sàn giao dịch từ <span class="font-bold">2025</span>, vận hành chính thức từ <span class="font-bold">2029</span>. Đây là cơ hội "vàng" để thương mại hóa các hoạt động canh tác bền vững (vùng nguyên liệu hữu cơ, năng lượng tái tạo, kinh tế tuần hoàn...) và tạo ra dòng doanh thu hoàn toàn mới.</p>
+                            <p class="mb-4">Chính phủ thí điểm sàn giao dịch từ <span class="font-bold">2025</span>, vận hành chính thức từ <span class="font-bold">2029</span>.<span class="tooltip-container"><span class="tooltip-trigger">[i]</span><span class="tooltip-text">Nguồn 62: Việt Nam sẽ thí điểm sàn giao dịch carbon từ 2025, vận hành chính thức vào 2029.<a href="https://vneconomy.vn/viet-nam-se-thi-diem-san-giao-dich-carbon-tu-2025-van-hanh-chinh-thuc-vao-2029.htm" target="_blank" class="tooltip-link">Xem nguồn</a></span></span> Đây là cơ hội "vàng" để thương mại hóa các hoạt động canh tác bền vững.</p>
                         </div>
                     </div>
                 </div>
@@ -163,7 +211,7 @@
                      <div class="space-y-8">
                         <div class="card p-6">
                              <h3 class="font-bold text-2xl mb-4">4.1. Tác động lên Hoạt động Cốt lõi</h3>
-                             <p>Hoạt động kinh doanh cốt lõi (mía đường) đối mặt rủi ro kép: áp lực giá thấp và bất định chính sách thuế. Thời tiết cực đoan làm giảm chất lượng nguyên liệu và hiệu suất sản xuất. Chuỗi cung ứng bị đe dọa bởi bão lũ gây ách tắc giao thông, tăng chi phí và rủi ro tồn kho.</p>
+                             <p>Hoạt động kinh doanh cốt lõi (mía đường) đối mặt rủi ro kép. Thời tiết cực đoan làm giảm chất lượng nguyên liệu. Chuỗi cung ứng bị đe dọa bởi bão lũ gây ách tắc giao thông<span class="tooltip-container"><span class="tooltip-trigger">[i]</span><span class="tooltip-text">Nguồn 30: Thiệt hại do cơn bão số 10 (Bualoi) gây ra ước tính khoảng 8.016 tỷ đồng.<a href="https://congly.vn/thiet-hai-do-con-bao-so-10-bualoi-gay-ra-uoc-tinh-khoang-8-016-ty-dong-494725.html" target="_blank" class="tooltip-link">Xem nguồn</a></span></span>, tăng chi phí và rủi ro tồn kho.</p>
                         </div>
                         <div class="card p-6">
                             <h3 class="font-bold text-2xl mb-4">4.2. Tác động lên Sáng kiến Chiến lược</h3>
@@ -174,11 +222,8 @@
             </div>
         </section>
         
-        <footer class="text-center mt-16 pt-8 border-t border-green-300">
-            <p class="text-gray-600">Dữ liệu được tổng hợp từ "Báo cáo Tình hình Nông nghiệp Tháng 9/2025".</p>
-            <p class="text-sm text-gray-500 mt-1">Bản quyền thuộc về Nhóm Phân tích Thị trường. Cập nhật ngày 02/10/2025.</p>
-        </footer>
     </div>
 
 </body>
 </html>
+

@@ -5,13 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Báo Cáo Infographic Nông Nghiệp Việt Nam - Tháng 9/2025 (Bản Đầy Đủ)</title>
-    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts: Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <!-- Phosphor Icons -->
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
     <style>
         body {
@@ -40,13 +37,11 @@
 <body class="text-gray-800">
 
     <div class="w-full p-4 sm:p-6 md:px-10 lg:px-16">
-        <!-- Header Section -->
         <header class="text-center mb-12">
             <h1 class="text-4xl md:text-5xl font-extrabold text-green-900">Báo Cáo Toàn Cảnh Ngành Nông Nghiệp Việt Nam</h1>
             <p class="text-xl md:text-2xl text-green-700 mt-2">Phân Tích Chi Tiết Thị Trường & Tác Động - Tháng 9/2025</p>
         </header>
 
-        <!-- Executive Summary Section -->
         <section class="mb-16">
             <h2 class="section-title text-3xl mb-8">Tóm Tắt Quản Trị</h2>
             <div class="card p-8 bg-lime-50 border-l-8 border-green-800">
@@ -71,11 +66,9 @@
             </div>
         </section>
 
-        <!-- Phần 1: Bối cảnh Vĩ mô -->
         <section class="mb-16">
             <h2 class="section-title text-3xl mb-8">Phần 1: Bối Cảnh Vĩ Mô Ngành Nông Nghiệp Việt Nam</h2>
             
-            <!-- 1.1 Tổng quan Kinh tế -->
             <h3 class="text-2xl font-bold text-green-800 mb-4">1.1. Tổng quan Kinh tế và Hiệu suất Ngành</h3>
             <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8">
                 <div class="card p-4 text-center"><h4 class="font-bold">Tổng XNK (9 tháng)</h4><p class="text-3xl font-bold text-blue-700 mt-1">637,22 <span class="text-xl">tỷ USD</span></p><p class="highlight-stat">(+17,2%)</p></div>
@@ -85,7 +78,6 @@
             </div>
             <div class="card p-6"><p class="text-center text-lg">Ngành nông nghiệp tiếp tục là điểm sáng, hướng tới mục tiêu xuất khẩu <span class="font-bold text-2xl text-green-700">65 tỷ USD</span> cho cả năm 2025. Tuy nhiên, có sự phân hóa rõ rệt: Ngành rau quả thành công, trong khi lúa gạo sụt giảm mạnh về giá trị dù tăng sản lượng.</p></div>
 
-            <!-- 1.2 Chính sách -->
             <h3 class="text-2xl font-bold text-green-800 mt-10 mb-4">1.2. Chính sách và Môi trường Pháp lý</h3>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div class="card p-6">
@@ -106,8 +98,7 @@
                 </div>
             </div>
 
-            <!-- 1.3 Thiên tai -->
-             <h3 class="text-2xl font-bold text-green-800 mt-10 mb-4">1.3. Tác động từ Thiên tai và Biến đổi Khí hậu</h3>
+            <h3 class="text-2xl font-bold text-green-800 mt-10 mb-4">1.3. Tác động từ Thiên tai và Biến đổi Khí hậu</h3>
              <div class="card p-6 bg-red-50/50 border-l-4 border-red-500">
                 <p>Tháng 9 là tháng thời tiết cực đoan với <span class="font-bold">4 cơn bão liên tiếp</span> trên Biển Đông. <span class="font-bold">Bão số 10 (Bualoi)</span>, cơn bão mạnh nhất năm, gây thiệt hại kinh tế ước tính <span class="highlight-stat-neg">hàng nghìn tỷ đồng</span>.</p>
                 <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -119,11 +110,9 @@
         
         <hr class="my-16 border-t-2 border-green-200">
 
-        <!-- Phần 2: Phân tích thị trường -->
         <section class="mb-16">
             <h2 class="section-title text-3xl mb-8">Phần 2: Phân Tích Các Thị Trường Nông Sản Trọng Yếu</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <!-- Cột Trái: Thách thức -->
                 <div class="card p-6">
                     <h3 class="text-2xl font-bold mb-4">2.1. Thị trường Mía đường: Tâm điểm Chính sách</h3>
                     <p class="mb-4">Giá đường thế giới ở mức thấp (<span class="font-bold">16,40 US cents/lb</span>) và tiêu thụ nội địa chậm. Rủi ro chiến lược lớn nhất là <span class="font-semibold">Quyết định 1686/QĐ-BCT</span> của Bộ Công Thương về việc rà soát cuối kỳ thuế CBPG & CTC đối với đường Thái Lan. Nếu thuế bị dỡ bỏ, đường Thái Lan giá rẻ sẽ gây ra cuộc chiến về giá khốc liệt.</p>
@@ -137,7 +126,6 @@
                     </div>
                     <p>Áp lực gia tăng khi <span class="font-semibold">Philippines tạm dừng nhập khẩu gạo 60 ngày (từ 1/9/2025)</span>, khiến thị trường trong nước trầm lắng. Chiến lược cần tập trung vào gạo chất lượng cao, hữu cơ để thoát khỏi cuộc chiến về giá.</p>
                 </div>
-                <!-- Cột Phải: Cơ hội -->
                 <div class="card p-6">
                     <h3 class="text-2xl font-bold mb-4">2.3. Thị trường Dừa: "Cơn sốt" giá & Cơ hội Đầu tư</h3>
                     <p class="mb-4">Giá dừa khô tại ĐBSCL tăng lên mức kỷ lục <span class="font-bold text-green-600 text-3xl">215.000đ/chục</span>, <span class="highlight-stat">gấp 3 lần</span> cùng kỳ năm trước. Nguyên nhân chính là do nhu cầu xuất khẩu tăng cao (đặc biệt từ Trung Quốc) trong khi nguồn cung giảm. Đây là cơ hội đầu tư chiến lược để đa dạng hóa danh mục sản phẩm và thâm nhập chuỗi giá trị F&B.</p>
@@ -155,7 +143,6 @@
 
         <hr class="my-16 border-t-2 border-green-200">
 
-        <!-- Phần 3 & 4 -->
         <section class="mb-12">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
                 <div>
@@ -187,7 +174,6 @@
             </div>
         </section>
         
-        <!-- Footer -->
         <footer class="text-center mt-16 pt-8 border-t border-green-300">
             <p class="text-gray-600">Dữ liệu được tổng hợp từ "Báo cáo Tình hình Nông nghiệp Tháng 9/2025".</p>
             <p class="text-sm text-gray-500 mt-1">Bản quyền thuộc về Nhóm Phân tích Thị trường. Cập nhật ngày 02/10/2025.</p>
@@ -196,5 +182,3 @@
 
 </body>
 </html>
-
-

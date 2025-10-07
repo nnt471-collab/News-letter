@@ -2,8 +2,8 @@
 
 title: "News-letter"
 description: "Điểm tin nhanh Ngành Nông Nghiệp – AgriS"
-url: ""        # nếu dùng nnt471-collab.github.io/<repo>, để trống
-baseurl: ""    # để trống khi deploy trên nhánh main
+url: "https://nnt471-collab.github.io" # Có thể thêm URL đầy đủ
+baseurl: "/News-letter" # SỬA Ở ĐÂY - Đây là thay đổi quan trọng nhất
 
 markdown: kramdown
 highlighter: rouge

@@ -13,74 +13,71 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
   <style>
     body{font-family:Inter,system-ui,ui-sans-serif;background:#f7fee7;color:#064e3b}
     .chip{display:inline-flex;align-items:center;gap:.5rem;background:#ecfdf5;border:1px solid #10b981;color:#065f46;
-          padding:.35rem .75rem;border-radius:999px;font-weight:700}
-    .card{background:#fff;border-radius:.75rem;box-shadow:0 4px 6px -1px rgb(0 0 0 / .1), 0 2px 4px -2px rgb(0 0 0 /.1)}
-    /* Tooltip */
-    .tip{position:relative;display:inline-block;cursor:help;margin-left:.2rem;vertical-align:super;font-weight:700;color:#047857;background:#ecfdf5;border:1px solid #34d399;border-radius:4px;padding:0 5px;font-size:.75em;line-height:1}
+          padding:.35rem .75rem;border-radius:999px;font-weight:800}
+    .card{background:#fff;border-radius:14px;border:1px solid #bbf7d0;box-shadow:0 10px 18px rgba(22,163,74,.08)}
+    .section-title{display:flex;align-items:center;gap:10px;color:#064e3b;font-weight:800;border-bottom:3px solid #86efac;padding-bottom:.35rem}
+    .section-title i{color:#047857}
+    /* Tooltip xanh */
+    .tip{position:relative;display:inline-block;cursor:help;margin-left:.2rem;vertical-align:super;font-weight:800;color:#047857;background:#ecfdf5;border:1px solid #34d399;border-radius:4px;padding:0 5px;font-size:.75em;line-height:1}
     .tip:hover .tiptext{visibility:visible;opacity:1;transform:translate(-50%,-6px)}
     .tip .tiptext{visibility:hidden;opacity:0;transition:all .2s ease;position:absolute;left:50%;bottom:1.6rem;min-width:280px;max-width:340px;background:#064e3b;color:#ecfdf5;border:1px solid #10b981;border-radius:8px;padding:.6rem .75rem;box-shadow:0 8px 24px rgba(0,0,0,.25);z-index:20;font-size:.9rem;line-height:1.45}
     .tip .tiptext a{color:#6ee7b7;text-decoration:underline;word-break:break-all}
-    .badge{display:inline-block;background:#ecfdf5;color:#065f46;border:1px solid #10b981;padding:.15rem .5rem;border-radius:999px;font-weight:600;font-size:.8rem;margin-left:.25rem}
+    .badge{display:inline-block;background:#ecfdf5;color:#065f46;border:1px solid #10b981;padding:.15rem .5rem;border-radius:999px;font-weight:700;font-size:.8rem;margin-left:.25rem}
     .kpi{border-collapse:collapse;width:100%}
     .kpi th,.kpi td{border:1px solid #d1fae5;padding:.55rem .6rem}
     .kpi th{background:#ecfdf5;color:#065f46;text-align:left}
-    .section{border-left:6px solid #10b981;background:#f0fdf4;padding:1rem;border-radius:.75rem}
     .content :where(h2,h3){color:#065f46}
-    .content hr{border-top:2px solid #bbf7d0;margin:2rem 0}
     .content blockquote{border-left:4px solid #10b981;background:#ecfdf5;padding:.75rem 1rem;border-radius:.5rem;color:#065f46}
     .content code{background:#ecfdf5;padding:.1rem .3rem;border-radius:.25rem}
-    /* chế độ compact cho mobile toggle */
-    body.compact .prose{font-size:0.98rem}
+    /* Compact mode (mobile toggle) */
+    body.compact .card{border-radius:12px}
+    body.compact .content{font-size:.98rem}
     body.compact h1{font-size:1.6rem}
   </style>
 </head>
 <body class="text-green-900">
-  <div class="max-w-5xl mx-auto px-4 sm:px-6 md:px-8 py-8 md:py-10" id="issue-root">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 md:px-8 py-7 md:py-9" id="issue-root">
     <!-- Header -->
-    <header class="text-center mb-8 md:mb-10">
-      <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight">
+    <header class="text-center mb-7">
+      <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight flex items-center justify-center gap-3">
+        <i class="ph ph-plant text-emerald-700"></i>
         {{ page.title | default: "Điểm tin nhanh Ngành Nông Nghiệp" }}
       </h1>
-      <div class="mt-3 flex items-center gap-3 justify-center">
-        <span class="chip">
-          Tháng
-          {% if page.period %}<span class="ml-1 font-semibold">{{ page.period }}</span>{% endif %}
-        </span>
-        {% if page.updated %}
-          <span class="ml-2 text-sm text-green-700/80">Cập nhật: {{ page.updated }}</span>
-        {% endif %}
+      <div class="mt-3 flex items-center gap-3 justify-center text-sm">
+        <span class="chip"><i class="ph ph-calendar-check"></i> Tháng {% if page.period %}<strong class="ml-1">{{ page.period }}</strong>{% endif %}</span>
+        {% if page.updated %}<span class="chip"><i class="ph ph-clock"></i> Cập nhật: {{ page.updated }}</span>{% endif %}
+        {% if page.org %}<span class="chip"><i class="ph ph-buildings"></i> {{ page.org }}</span>{% endif %}
       </div>
     </header>
 
     <!-- Nội dung markdown -->
-    <article class="content prose prose-green max-w-none prose-h2:mt-0">
+    <article class="content max-w-none">
       <div class="card p-5 md:p-7">
         {{ content }}
       </div>
     </article>
 
     <!-- Back home -->
-    <div class="mt-8 flex justify-center">
-      <a href="{{ '/' | relative_url }}" class="chip hover:opacity-90">← Trang chủ</a>
+    <div class="mt-7 flex justify-center">
+      <a href="{{ '/' | relative_url }}" class="chip hover:opacity-90"><i class="ph ph-arrow-left"></i> Trang chủ</a>
     </div>
   </div>
 
   <script>
-    // render mermaid nếu người dùng mở trực tiếp trang tháng
+    // Render mermaid nếu mở trực tiếp trang tháng
     (function(){
       if(!window.mermaid) return;
-      mermaid.initialize({ startOnLoad: false, securityLevel: 'loose' });
+      mermaid.initialize({ startOnLoad:false, securityLevel:'loose' });
       const blocks = document.querySelectorAll('pre code.language-mermaid, pre code.mermaid');
       blocks.forEach((code, i) => {
         const src = code.textContent.trim();
-        const container = document.createElement('div');
-        container.className = 'my-4';
-        const pre = code.closest('pre');
-        pre?.parentNode?.replaceChild(container, pre);
+        const container = document.createElement('div'); container.className='my-4';
+        const pre = code.closest('pre'); pre?.parentNode?.replaceChild(container, pre);
         try { mermaid.render('mmd-'+i, src, svg => container.innerHTML = svg); }
         catch(e){ container.innerHTML = '<pre>'+src.replace(/</g,'&lt;')+'</pre>'; }
       });

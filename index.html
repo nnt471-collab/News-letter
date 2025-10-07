@@ -1,67 +1,67 @@
 ---
-# trang chủ
+layout: none
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="vi">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Điểm tin nhanh Ngành Nông Nghiệp – AgriS</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    body{font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:#F7FEE7}
-    .chip{border:1px solid #22c55e33;padding:.5rem .875rem;border-radius:9999px}
-    .chip.active{background:#16a34a;color:#fff;border-color:#16a34a}
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Điểm tin nhanh Ngành Nông Nghiệp – AgriS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{--agr-primary:#065f46;--agr-chip:#ecfdf5;--agr-chip-b:#10b981}
+  body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:#f7fee7;margin:0;color:#0f172a}
+  .wrap{max-width:1000px;margin:0 auto;padding:40px 16px}
+  h1{font-size:clamp(28px,4.8vw,44px);color:#064e3b;margin:0 0 6px;font-weight:800;text-align:center}
+  .subtitle{color:#065f46;text-align:center;font-size:clamp(16px,3.6vw,22px);margin-bottom:26px}
+  .chips{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+  .chip{display:inline-flex;align-items:center;gap:8px;padding:.55rem .9rem;border:1px solid var(--agr-chip-b);background:var(--agr-chip);
+        color:#065f46;border-radius:999px;font-weight:700;text-decoration:none}
+  .chip .tag{font-weight:700;font-size:.85em;background:#d1fae5;border:1px solid var(--agr-chip-b);padding:.05rem .45rem;border-radius:.6rem}
+  .empty{max-width:900px;margin:26px auto 0;background:#fff;border:1px solid #bbf7d0;border-radius:14px;padding:18px}
+  .help li{margin:.4rem 0}
+</style>
 </head>
-<body class="text-gray-800">
-  <main class="mx-auto max-w-5xl p-4 sm:p-6 md:p-10">
-    <header class="mb-8 sm:mb-10 text-center">
-      <h1 class="text-3xl md:text-5xl font-extrabold text-green-900">Điểm tin nhanh Ngành Nông Nghiệp</h1>
-      <p class="text-green-700 md:text-xl mt-2">AgriS • Cập nhật định kỳ theo tháng/tuần</p>
-    </header>
+<body>
+<div class="wrap">
+  <h1>Điểm tin nhanh Ngành Nông Nghiệp</h1>
+  <div class="subtitle">AgriS • Cập nhật định kỳ theo tháng/tuần</div>
 
-    <!-- Tabs (tự sinh từ collection _issues) -->
-    <div class="flex flex-wrap gap-3 mb-6">
-      {%- comment -%}
-        An toàn: nếu site.issues nil thì lấy từ site.collections['issues'].docs,
-        nếu vẫn không có thì gán mảng rỗng để tránh lỗi sort.
-      {%- endcomment -%}
-      {%- assign _issuesA = site.issues -%}
-      {%- if _issuesA == nil or _issuesA == empty -%}
-        {%- assign _issuesColl = site.collections['issues'] -%}
-        {%- if _issuesColl and _issuesColl.docs -%}
-          {%- assign _issuesA = _issuesColl.docs -%}
-        {%- else -%}
-          {%- assign _issuesA = "" | split: "," -%}
-        {%- endif -%}
-      {%- endif -%}
+  {% assign list_months = site.months | sort: "date" | reverse %}
+  {% assign list_weeks  = site.weeks  | sort: "date" | reverse %}
+  {% assign issues = list_months | concat: list_weeks %}
 
-      {%- assign issues_sorted = _issuesA | sort: 'date' | reverse -%}
-      {%- for post in issues_sorted -%}
-        <a class="chip {% if forloop.first %}active{% endif %}" href="{{ post.url | relative_url }}">
-          {{ post.title }}
-        </a>
-      {%- endfor -%}
-
-      {%- if issues_sorted == empty -%}
-        <span class="text-sm text-gray-600">Chưa có bài nào trong <code>_issues/</code>. Thêm file để bắt đầu.</span>
-      {%- endif -%}
+  {% if issues.size > 0 %}
+    <div class="chips">
+      {% for it in issues %}
+        {% assign is_month = it.type == "month" or it.layout == "month" %}
+        {% if is_month %}
+          {% assign p = it.period | default: it.date | date: "%Y-%m" %}
+          {% assign mnum = it.date | date: "%-m" %}
+          <a class="chip" href="{{ it.url | relative_url }}">
+            <span class="tag">Tháng</span>
+            Tổng hợp T{{ mnum }}/{{ it.date | date: "%Y" }}
+          </a>
+        {% else %}
+          <a class="chip" href="{{ it.url | relative_url }}">
+            <span class="tag">Tuần</span>
+            {{ it.title }}
+          </a>
+        {% endif %}
+      {% endfor %}
     </div>
-
-    <!-- Intro -->
-    <div class="bg-white rounded-xl shadow p-5">
-      <h2 class="font-extrabold text-green-800 text-xl mb-2">Cách dùng</h2>
-      <ul class="list-disc list-inside text-sm leading-7">
-        <li>Mỗi số (tháng/tuần) là một file trong thư mục <code>_issues/</code> (ví dụ: <code>2025-09.md</code>, <code>2025-10-w1.md</code>).</li>
-        <li>Front-matter cần có: <code>title</code>, <code>date</code>, <code>layout: week</code>, <code>type: month</code> hoặc <code>type: week</code>.</li>
-        <li>Trang này tự tạo danh sách “chip” theo thời gian (mới nhất trước), không cần sửa code.</li>
+  {% else %}
+    <div class="empty">
+      <strong>Chưa có bài nào trong <code>_months/</code> hoặc <code>_weeks/</code>.</strong>
+      <ul class="help">
+        <li>Mỗi số là một file trong <code>_months/</code> (ví dụ: <code>2025-09.md</code>) hoặc <code>_weeks/</code> (ví dụ: <code>2025-10-w1.md</code>).</li>
+        <li>Front-matter bắt buộc: <code>title</code>, <code>date</code>, <code>layout</code> (<code>month</code> hoặc <code>week</code>), <code>type</code> (<code>month</code>|<code>week</code>).</li>
       </ul>
     </div>
-  </main>
+  {% endif %}
+</div>
 </body>
 </html>

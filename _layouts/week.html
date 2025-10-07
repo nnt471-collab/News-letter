@@ -1,38 +1,67 @@
+---
+---
 <!doctype html>
 <html lang="vi">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{{ page.title }}</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-<style>
-  :root{--agr:#065f46;--chip:#ecfdf5;--chipb:#10b981}
-  body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:#f7fee7;margin:0;color:#0f172a}
-  .wrap{max-width:1000px;margin:0 auto;padding:32px 16px}
-  h1{font-size:clamp(26px,4.6vw,40px);color:#064e3b;margin:0 0 10px;font-weight:800;text-align:center}
-  .meta{color:#065f46;text-align:center;margin-bottom:18px}
-  .card{background:#fff;border:1px solid #bbf7d0;border-radius:16px;padding:18px;margin:14px 0}
-  /* Tooltip xanh AgriS */
-  .tip{position:relative;display:inline-block;cursor:help;vertical-align:super;margin-left:.15rem}
-  .tip .i{font-weight:800;font-size:.75em;color:#065f46;background:#ecfdf5;border:1px solid #10b981;border-radius:6px;padding:0 .35rem}
-  .tiptext{visibility:hidden;opacity:0;transition:.2s;position:absolute;left:50%;bottom:130%;transform:translateX(-50%);
-           background:#064e3b;color:#fff;border:1px solid #10b981;border-radius:10px;padding:10px;min-width:300px;max-width:360px;box-shadow:0 8px 24px rgba(16,185,129,.25)}
-  .tip:hover .tiptext{visibility:visible;opacity:1}
-  .tiptext a{color:#86efac;text-decoration:underline;word-break:break-all}
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ page.title }}</title>
+  <meta name="description" content="{{ site.description | default: 'Điểm tin nhanh Ngành Nông Nghiệp' }}">
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <style>
+    :root{--agr:#065f46;--chip:#ecfdf5;--chipb:#10b981}
+    body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:#f7fee7;margin:0;color:#0f172a}
+    .wrap{max-width:1000px;margin:0 auto;padding:32px 16px}
+    h1{font-size:clamp(26px,4.6vw,40px);color:#064e3b;margin:0 0 10px;font-weight:800;text-align:center}
+    .meta{color:#065f46;text-align:center;margin-bottom:18px}
+    .card{background:#fff;border:1px solid #bbf7d0;border-radius:16px;padding:18px;margin:14px 0}
+    .tip{position:relative;display:inline-block;cursor:help;vertical-align:super;margin-left:.15rem}
+    .tip .i{font-weight:800;font-size:.75em;color:#065f46;background:#ecfdf5;border:1px solid #10b981;border-radius:6px;padding:0 .35rem}
+    .tiptext{visibility:hidden;opacity:0;transition:.2s;position:absolute;left:50%;bottom:130%;transform:translateX(-50%);
+             background:#064e3b;color:#fff;border:1px solid #10b981;border-radius:10px;padding:10px;min-width:300px;max-width:360px;box-shadow:0 8px 24px rgba(16,185,129,.25)}
+    .tip:hover .tiptext{visibility:visible;opacity:1}
+    .tiptext a{color:#86efac;text-decoration:underline;word-break:break-all}
+  </style>
 </head>
 <body>
-<div class="wrap">
-  <h1>{{ page.title }}</h1>
-  <div class="meta">
-    Cập nhật: {{ page.updated | default: page.date | date: "%d/%m/%Y" }} • Đơn vị: {{ page.org | default: "TTC AgriS" }}
+  <div class="wrap">
+    <h1>{{ page.title }}</h1>
+    <div class="meta">
+      Cập nhật: {{ page.updated | default: page.date | date: "%d/%m/%Y" }} • Đơn vị: {{ page.org | default: "TTC AgriS" }}
+    </div>
+
+    <div class="card">
+      {{ content }}
+    </div>
+
+    <div style="text-align:center;margin-top:16px">
+      <a href="{{ '/' | relative_url }}" style="text-decoration:none;padding:.45rem .8rem;border:1px solid var(--chipb);background:var(--chip);border-radius:999px;color:#065f46;font-weight:700">← Trang chủ</a>
+    </div>
   </div>
 
-  <div class="card">
-    {{ content }}
-  </div>
-</div>
+  <script>
+    // Render Mermaid nếu tuần có code block mermaid
+    (function () {
+      if (!window.mermaid) return;
+      mermaid.initialize({ startOnLoad: false, securityLevel: 'loose' });
+      const blocks = document.querySelectorAll('pre code.language-mermaid, pre code.mermaid');
+      blocks.forEach((code, i) => {
+        const src = code.textContent.trim();
+        const container = document.createElement('div');
+        container.className = 'my-4';
+        const pre = code.closest('pre');
+        pre.parentNode.replaceChild(container, pre);
+        try {
+          mermaid.render('mmdw-' + i, src, (svg) => { container.innerHTML = svg; });
+        } catch (e) {
+          container.innerHTML = '<pre style="background:#fee2e2;border:1px solid #fecaca;border-radius:8px;padding:12px;overflow:auto"><code>' +
+            src.replace(/</g,'&lt;').replace(/>/g,'&gt;') + '</code></pre>';
+        }
+      });
+    })();
+  </script>
 </body>
 </html>

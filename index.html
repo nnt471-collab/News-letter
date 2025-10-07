@@ -5,71 +5,138 @@ layout: none
 <!doctype html>
 <html lang="vi">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Điểm tin nhanh Ngành Nông Nghiệp – AgriS</title>
-  <meta name="description" content="Tin nhanh ngành Nông nghiệp, cập nhật theo tháng/tuần – TTC AgriS">
-  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700;800&display=swap" rel="stylesheet">
-  <style>
-    :root{--agr:#065f46;--chip:#ecfdf5;--chipb:#10b981}
-    *{box-sizing:border-box}
-    body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:#f7fee7;margin:0;color:#0f172a}
-    .wrap{max-width:1000px;margin:0 auto;padding:40px 16px}
-    h1{font-size:clamp(28px,4.8vw,44px);color:#064e3b;margin:0 0 6px;font-weight:800;text-align:center}
-    .subtitle{color:#065f46;text-align:center;font-size:clamp(16px,3.6vw,22px);margin-bottom:26px}
-    .chips{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
-    .chip{display:inline-flex;align-items:center;gap:8px;padding:.55rem .9rem;border:1px solid var(--chipb);background:var(--chip);
-          color:#065f46;border-radius:999px;font-weight:700;text-decoration:none}
-    .chip:hover{opacity:.9}
-    .tag{font-weight:700;font-size:.85em;background:#d1fae5;border:1px solid var(--chipb);padding:.05rem .45rem;border-radius:.6rem}
-    .empty{max-width:900px;margin:26px auto 0;background:#fff;border:1px solid #bbf7d0;border-radius:14px;padding:18px}
-    .help li{margin:.4rem 0}
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Điểm tin nhanh Ngành Nông Nghiệp – AgriS</title>
+<meta name="description" content="Tin nhanh ngành Nông nghiệp, cập nhật theo tháng/tuần – TTC AgriS">
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<style>
+  :root{--agr:#065f46;--chip:#ecfdf5;--chipb:#10b981}
+  *{box-sizing:border-box}
+  body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:#f7fee7;margin:0;color:#0f172a}
+  .wrap{max-width:1100px;margin:0 auto;padding:36px 16px}
+  h1{font-size:clamp(28px,4.8vw,44px);color:#064e3b;margin:0 0 6px;font-weight:800;text-align:center}
+  .subtitle{color:#065f46;text-align:center;font-size:clamp(16px,3.6vw,20px);margin-bottom:18px}
+  .controls{display:flex;justify-content:center;gap:10px;margin-bottom:14px}
+  .btn{border:1px solid #86efac;background:#ecfdf5;color:#065f46;border-radius:999px;padding:.4rem .75rem;font-weight:700;cursor:pointer}
+  .btn[aria-pressed="true"]{background:#065f46;color:#ecfdf5;border-color:#065f46}
+  .chips{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:10px 0 18px}
+  .chip{display:inline-flex;align-items:center;gap:8px;padding:.5rem .85rem;border:1px solid var(--chipb);background:var(--chip);
+        color:#065f46;border-radius:999px;font-weight:700;text-decoration:none;cursor:pointer}
+  .chip .tag{font-weight:700;font-size:.85em;background:#d1fae5;border:1px solid var(--chipb);padding:.05rem .45rem;border-radius:.6rem}
+  .viewer{background:#fff;border:1px solid #bbf7d0;border-radius:16px;padding:14px;min-height:220px}
+  .skeleton{height:10px;background:#e2f5e9;border-radius:6px;margin:8px 0;animation:pulse 1.1s infinite ease-in-out}
+  @keyframes pulse{0%{opacity:.55}50%{opacity:1}100%{opacity:.55}}
+  /* compact mode */
+  body.compact .viewer{font-size:.98rem}
+  body.compact h1{font-size:1.6rem}
+</style>
 </head>
 <body>
-  <div class="wrap">
-    <h1>Điểm tin nhanh Ngành Nông Nghiệp</h1>
-    <div class="subtitle">AgriS • Cập nhật định kỳ theo tháng/tuần</div>
+<div class="wrap">
+  <h1>Điểm tin nhanh Ngành Nông Nghiệp</h1>
+  <div class="subtitle">AgriS • Cập nhật định kỳ theo tháng/tuần</div>
 
-    {%- assign list_months = site.months | sort: "date" | reverse -%}
-
-    {%- if site.weeks -%}
-      {%- assign list_weeks = site.weeks | sort: "date" | reverse -%}
-    {%- else -%}
-      {%- assign list_weeks = "" | split: "" -%}  {% comment %} mảng rỗng để concat an toàn {% endcomment %}
-    {%- endif -%}
-
-    {%- assign issues = list_months | concat: list_weeks -%}
-
-    {%- if issues.size > 0 -%}
-      <div class="chips">
-        {%- for it in issues -%}
-          {%- assign is_month = it.type == "month" or it.layout == "month" -%}
-          {%- if is_month -%}
-            {%- assign mnum = it.date | date: "%-m" -%}
-            <a class="chip" href="{{ it.url | relative_url }}">
-              <span class="tag">Tháng</span>
-              Tổng hợp T{{ mnum }}/{{ it.date | date: "%Y" }}
-            </a>
-          {%- else -%}
-            <a class="chip" href="{{ it.url | relative_url }}">
-              <span class="tag">Tuần</span>
-              {{ it.title }}
-            </a>
-          {%- endif -%}
-        {%- endfor -%}
-      </div>
-    {%- else -%}
-      <div class="empty">
-        <strong>Chưa có bài nào trong <code>_months/</code> hoặc <code>_weeks/</code>.</strong>
-        <ul class="help">
-          <li>Mỗi số là 1 file trong <code>_months/</code> (VD: <code>2025-09.md</code>) hoặc <code>_weeks/</code> (VD: <code>2025-10-w1.md</code>).</li>
-          <li>Front-matter: <code>title</code>, <code>date</code>, <code>layout</code> (<code>month</code>|<code>week</code>), <code>type</code> (<code>month</code>|<code>week</code>).</li>
-        </ul>
-      </div>
-    {%- endif -%}
+  <!-- Toggle mobile/desktop -->
+  <div class="controls">
+    <button id="btnMobile" type="button" aria-pressed="false" class="btn">📱 Giao diện Mobile</button>
+    <button id="btnDesktop" type="button" aria-pressed="true" class="btn">🖥️ Giao diện Máy tính</button>
   </div>
+
+  {%- assign list_months = site.months | sort: "date" | reverse -%}
+  {%- if site.weeks -%}
+    {%- assign list_weeks = site.weeks | sort: "date" | reverse -%}
+  {%- else -%}
+    {%- assign list_weeks = "" | split: "" -%}  {% comment %} mảng rỗng để concat an toàn {% endcomment %}
+  {%- endif -%}
+  {%- assign issues = list_months | concat: list_weeks -%}
+
+  <!-- Chips -->
+  <div class="chips" id="chips">
+    {%- for it in issues -%}
+      {%- assign is_month = it.type == "month" or it.layout == "month" -%}
+      <a class="chip" data-href="{{ it.url | relative_url }}" data-title="{{ it.title | escape }}">
+        <span class="tag">{{ is_month | ternary: "Tháng", "Tuần" }}</span>
+        {%- if is_month -%}
+          {%- assign mnum = it.date | date: "%-m" -%}
+          Tổng hợp T{{ mnum }}/{{ it.date | date: "%Y" }}
+        {%- else -%}
+          {{ it.title }}
+        {%- endif -%}
+      </a>
+    {%- endfor -%}
+  </div>
+
+  <!-- Viewer (load nội dung số đã chọn) -->
+  <div id="viewer" class="viewer">
+    <!-- skeleton -->
+    <div class="skeleton" style="width:60%"></div>
+    <div class="skeleton" style="width:85%"></div>
+    <div class="skeleton" style="width:70%"></div>
+  </div>
+</div>
+
+<script>
+(function(){
+  // Toggle view-mode
+  const b=document.body, m=document.getElementById('btnMobile'), d=document.getElementById('btnDesktop');
+  const set=c=>{b.classList.toggle('compact',c); m.setAttribute('aria-pressed',c); d.setAttribute('aria-pressed',!c); localStorage.setItem('view-mode',c?'compact':'desktop')};
+  set((localStorage.getItem('view-mode')||'')==='compact' || window.innerWidth<768);
+  m.onclick=()=>set(true); d.onclick=()=>set(false);
+
+  // SPA loader
+  const viewer = document.getElementById('viewer');
+  const chips  = document.getElementById('chips');
+  async function loadIssue(url){
+    viewer.innerHTML = `
+      <div class="skeleton" style="width:60%"></div>
+      <div class="skeleton" style="width:85%"></div>
+      <div class="skeleton" style="width:70%"></div>`;
+    try{
+      const res = await fetch(url, {headers: {'x-requested-with':'fetch'}});
+      const html = await res.text();
+      const doc  = new DOMParser().parseFromString(html,'text/html');
+      const root = doc.querySelector('#issue-root') || doc.body;
+      // lấy phần chính của trang tháng/tuần
+      viewer.innerHTML = root.innerHTML;
+
+      // render mermaid nếu có
+      if(window.mermaid){
+        mermaid.initialize({ startOnLoad:false, securityLevel:'loose' });
+        const codes = viewer.querySelectorAll('pre code.language-mermaid, pre code.mermaid');
+        codes.forEach((code,i)=>{
+          const src = code.textContent.trim();
+          const pre = code.closest('pre');
+          const container = document.createElement('div');
+          pre?.parentNode?.replaceChild(container, pre);
+          try{ mermaid.render('mmdi-'+i, src, svg => container.innerHTML = svg); }
+          catch(e){ container.innerHTML = '<pre>'+src.replace(/</g,'&lt;')+'</pre>'; }
+        });
+      }
+      // cuộn lên header một chút
+      window.scrollTo({top:0, behavior:'smooth'});
+    }catch(e){
+      viewer.innerHTML = '<div style="padding:12px;color:#b91c1c">Không tải được nội dung. Vui lòng thử lại.</div>';
+    }
+  }
+
+  // click chips (ngăn điều hướng, load tại chỗ)
+  chips.addEventListener('click', (ev)=>{
+    const a = ev.target.closest('[data-href]');
+    if(!a) return;
+    ev.preventDefault();
+    const url = a.getAttribute('data-href');
+    history.replaceState(null,'', location.origin + '{{ site.baseurl }}' + '/'); // giữ url trang chủ
+    loadIssue(url);
+  });
+
+  // tự động load số mới nhất (chip đầu tiên) khi mở trang
+  const first = chips.querySelector('[data-href]');
+  if(first) loadIssue(first.getAttribute('data-href'));
+})();
+</script>
 </body>
 </html>

@@ -1,0 +1,10 @@
+title: "Điểm tin nhanh Ngành Nông Nghiệp • AgriS"
+markdown: kramdown
+theme: nil
+collections:
+  months:
+    output: true
+    permalink: /thang/:name/
+  weeks:
+    output: true
+    permalink: /tuan/:period-:week/

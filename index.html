@@ -1,238 +1,362 @@
 <!DOCTYPE html>
 <html lang="vi">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Báo Cáo Infographic Nông Nghiệp Việt Nam - Tháng 9/2025 (Bản Đầy Đủ)</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts: Inter -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <!-- Phosphor Icons -->
-    <script src="https://unpkg.com/@phosphor-icons/web"></script>
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f7fee7;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Điểm tin nhanh Ngành Nông Nghiệp • AgriS</title>
 
-        .card {
-            background-color: white;
-            border-radius: 0.75rem;
-            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-        }
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
 
-        .section-title {
-            font-weight: 800;
-            color: #166534; /* Darker Green */
-            border-bottom: 3px solid #86efac;
-            padding-bottom: 0.5rem;
-        }
-        
-        .highlight-stat { font-weight: 700; color: #16a34a; }
-        .highlight-stat-neg { font-weight: 700; color: #dc2626; }
-        
-        /* Tooltip Styles */
-        .tooltip-container {
-            position: relative;
-            display: inline-block;
-            cursor: help;
-        }
-        .tooltip-trigger {
-            font-size: 0.7em;
-            font-weight: bold;
-            color: #3b82f6;
-            vertical-align: super;
-            margin-left: 2px;
-            padding: 1px 4px;
-            border-radius: 4px;
-            background-color: #eff6ff;
-        }
-        .tooltip-text {
-            visibility: hidden;
-            width: 320px;
-            background-color: #1f2937;
-            color: #fff;
-            text-align: left;
-            border-radius: 6px;
-            padding: 10px;
-            position: absolute;
-            z-index: 10;
-            bottom: 125%;
-            left: 50%;
-            margin-left: -160px;
-            opacity: 0;
-            transition: opacity 0.3s;
-            font-size: 0.875rem;
-            line-height: 1.5;
-            box-shadow: 0px 0px 10px rgba(0,0,0,0.5);
-        }
-        .tooltip-container:hover .tooltip-text {
-            visibility: visible;
-            opacity: 1;
-        }
-        .tooltip-link {
-            display: block;
-            margin-top: 5px;
-            color: #60a5fa;
-            text-decoration: underline;
-            word-break: break-all;
-        }
-    </style>
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Phosphor Icons -->
+  <script defer src="https://unpkg.com/@phosphor-icons/web"></script>
+
+  <style>
+    :root { color-scheme: light; }
+    body { font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background-color: #f7fee7; }
+    .card { background-color: #fff; border-radius: 0.75rem; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1); }
+    .section-title { font-weight: 800; color: #166534; border-bottom: 3px solid #86efac; padding-bottom: 0.5rem; }
+    .highlight-stat { font-weight: 700; color: #16a34a; }
+    .highlight-stat-neg { font-weight: 700; color: #dc2626; }
+
+    /* ===== Compact (Mobile) mode tweaks ===== */
+    .compact .wrap { padding-left: 0.75rem; padding-right: 0.75rem; }
+    .compact header h1 { font-size: clamp(1.5rem, 5vw, 1.875rem); line-height: 1.2; }
+    .compact header p { font-size: clamp(0.95rem, 3.5vw, 1.125rem); }
+    .compact .section-title { font-size: 1.25rem; }
+    .compact .card { border-radius: 0.75rem; }
+    .compact .card.p-8 { padding: 1rem !important; }
+    .compact .card.p-6 { padding: 0.875rem !important; }
+    .compact .card.p-4 { padding: 0.75rem !important; }
+    .compact .grid { gap: 0.75rem !important; }
+    .compact .mb-16 { margin-bottom: 1.25rem !important; }
+    .compact .mt-10 { margin-top: 1rem !important; }
+    .compact .text-3xl { font-size: 1.25rem !important; }
+    .compact .text-2xl { font-size: 1.125rem !important; }
+    .compact .text-xl { font-size: 1rem !important; }
+    .compact .text-lg { font-size: 0.95rem !important; }
+    .compact .stat-big { font-size: 1.5rem !important; }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; scroll-behavior: auto !important; }
+    }
+
+    /* Tab active state */
+    .tab-active { background-color: #16a34a; color: #fff; border-color: #16a34a; }
+    .tab-inactive { background-color: #ffffff; color: #166534; border-color: #86efac; }
+  </style>
 </head>
 
 <body class="text-gray-800">
+  <div class="wrap w-full pt-6 sm:pt-8 px-4 sm:px-6 md:px-8">
+    <main class="mx-auto max-w-screen-xl">
+      <!-- Header -->
+      <header class="text-center mb-6 md:mb-8">
+        <div class="flex items-center justify-center gap-2 text-green-800 font-extrabold uppercase tracking-wide">
+          <i class="ph ph-plant text-xl md:text-2xl"></i>
+          <span>AgriS</span>
+        </div>
+        <h1 class="text-3xl md:text-5xl font-extrabold text-green-900 mt-1">
+          Điểm tin nhanh Ngành Nông Nghiệp
+        </h1>
+        <p class="text-sm md:text-lg text-green-700 mt-1">Số: <span class="font-semibold">Tháng 9/2025</span> • Cập nhật: 02/10/2025</p>
 
-    <div class="w-full p-4 sm:p-6 md:px-10 lg:px-16">
-        <!-- Header Section -->
-        <header class="text-center mb-12">
-            <h1 class="text-4xl md:text-5xl font-extrabold text-green-900">Tổng Hợp Báo Cáo Nhanh Ngành Nông Nghiệp</h1>
-            <p class="text-xl md:text-2xl text-green-700 mt-2">Phân Tích Chi Tiết Thị Trường & Tác Động - Tháng 9/2025</p>
-        </header>
+        <!-- Hai nút chọn giao diện (có trạng thái đang bật) -->
+        <div class="mt-4 flex justify-center gap-3">
+          <button id="btnMobile" type="button" aria-pressed="false"
+            class="rounded-lg px-3 py-1.5 text-sm font-semibold border transition focus:outline-none focus:ring-2">
+            📱 Giao diện Mobile
+          </button>
+          <button id="btnDesktop" type="button" aria-pressed="true"
+            class="rounded-lg px-3 py-1.5 text-sm font-semibold border transition focus:outline-none focus:ring-2">
+            🖥️ Giao diện Máy tính
+          </button>
+        </div>
+      </header>
 
-        <!-- Executive Summary Section -->
-        <section class="mb-16">
-            <h2 class="section-title text-3xl mb-8">Tóm Tắt Quản Trị</h2>
-            <div class="card p-8 bg-lime-50 border-l-8 border-green-800">
-                <p class="text-lg text-gray-700 leading-relaxed">Tháng 9/2025 là giai đoạn tương phản: Xuất khẩu nông sản duy trì đà tăng trưởng, đặc biệt ở mảng rau quả. Tuy nhiên, ngành phải đối mặt với thách thức nghiêm trọng từ <span class="font-bold">thiên tai (Bão số 10)</span>, <span class="font-bold">sụt giảm giá trị ở mặt hàng lúa gạo</span>, và <span class="font-bold">bất định từ chính sách thương mại quốc tế</span>.</p>
-                <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div>
-                        <h3 class="font-bold text-xl text-red-800 flex items-center mb-3"><i class="ph-bold ph-shield-warning mr-2"></i>Các Rủi Ro Chính</h3>
-                        <ul class="space-y-3 list-disc list-inside">
-                            <li><span class="font-semibold">Ngành đường:</span> Áp lực cạnh tranh và biên lợi nhuận do giá thế giới thấp & nguy cơ thay đổi thuế phòng vệ.</li>
-                            <li><span class="font-semibold">Chuỗi cung ứng:</span> Nguy cơ gián đoạn logistics và thiệt hại vùng nguyên liệu do thời tiết cực đoan.</li>
-                            <li><span class="font-semibold">Ngành gạo:</span> Áp lực lên giá và đầu ra sau khi Philippines tạm ngưng nhập khẩu.</li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h3 class="font-bold text-xl text-green-800 flex items-center mb-3"><i class="ph-bold ph-rocket-launch mr-2"></i>Các Cơ Hội & Động Lực Mới</h3>
-                         <ul class="space-y-3 list-disc list-inside">
-                            <li><span class="font-semibold">Dừa & F&B:</span> "Sốt giá" dừa mở ra cơ hội đầu tư và chiếm lĩnh thị phần F&B giá trị cao.</li>
-                            <li><span class="font-semibold">Thị trường Carbon:</span> Cơ hội chiến lược tạo dòng doanh thu mới từ thực hành canh tác bền vững.</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+      <!-- Tabs theo tuần -->
+      <nav class="mb-6 md:mb-8 overflow-x-auto">
+        <ul class="flex gap-2 md:gap-3 min-w-max">
+          <li><button data-tab="tab-month" class="tab-btn rounded-full border px-3 py-1.5 text-sm font-semibold tab-active">Tổng hợp T9/2025</button></li>
+          <li><button data-tab="tab-w1" class="tab-btn rounded-full border px-3 py-1.5 text-sm font-semibold tab-inactive">Tuần 1 (01–07/09)</button></li>
+          <li><button data-tab="tab-w2" class="tab-btn rounded-full border px-3 py-1.5 text-sm font-semibold tab-inactive">Tuần 2 (08–14/09)</button></li>
+          <li><button data-tab="tab-w3" class="tab-btn rounded-full border px-3 py-1.5 text-sm font-semibold tab-inactive">Tuần 3 (15–21/09)</button></li>
+          <li><button data-tab="tab-w4" class="tab-btn rounded-full border px-3 py-1.5 text-sm font-semibold tab-inactive">Tuần 4 (22–30/09)</button></li>
+        </ul>
+      </nav>
+
+      <!-- TAB: Tổng hợp tháng 9 -->
+      <section id="tab-month" class="tab-panel space-y-10 md:space-y-16">
+        <!-- KPI cards -->
+        <section class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-6">
+          <div class="card p-3 md:p-4 text-center">
+            <h4 class="font-bold text-sm md:text-base">Tổng XNK (9T)</h4>
+            <p class="stat-big text-2xl md:text-3xl font-bold text-blue-700 mt-1">637,22 <span class="text-sm md:text-xl">tỷ USD</span></p>
+            <p class="highlight-stat text-xs md:text-sm">(+17,2%)</p>
+          </div>
+          <div class="card p-3 md:p-4 text-center">
+            <h4 class="font-bold text-sm md:text-base">Thặng dư TM (9T)</h4>
+            <p class="stat-big text-2xl md:text-3xl font-bold text-green-700 mt-1">13,31 <span class="text-sm md:text-xl">tỷ USD</span></p>
+          </div>
+          <div class="card p-3 md:p-4 text-center">
+            <h4 class="font-bold text-sm md:text-base">XK NLS (8T)</h4>
+            <p class="stat-big text-2xl md:text-3xl font-bold text-yellow-700 mt-1">45,37 <span class="text-sm md:text-xl">tỷ USD</span></p>
+            <p class="highlight-stat text-xs md:text-sm">(+12%)</p>
+          </div>
+          <div class="card p-3 md:p-4 text-center">
+            <h4 class="font-bold text-sm md:text-base">PMI Sản xuất (T9)</h4>
+            <p class="stat-big text-2xl md:text-3xl font-bold text-indigo-700 mt-1">50,4 <span class="text-sm md:text-xl">điểm</span></p>
+          </div>
         </section>
 
-        <!-- Phần 1: Bối cảnh Vĩ mô -->
-        <section class="mb-16">
-            <h2 class="section-title text-3xl mb-8">Phần 1: Bối Cảnh Vĩ Mô Ngành Nông Nghiệp Việt Nam</h2>
-            
-            <!-- 1.1 Tổng quan Kinh tế -->
-            <h3 class="text-2xl font-bold text-green-800 mb-4">1.1. Tổng quan Kinh tế và Hiệu suất Ngành</h3>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8">
-                <div class="card p-4 text-center"><h4 class="font-bold">Tổng XNK (9 tháng)</h4><p class="text-3xl font-bold text-blue-700 mt-1">637,22 <span class="text-xl">tỷ USD</span></p><p class="highlight-stat">(+17,2%) <span class="tooltip-container"><span class="tooltip-trigger">[i]</span><span class="tooltip-text">Nguồn 3: Công bố và thông tin - Tổng cục Hải quan.<a href="http://customs.gov.vn:8228/index.jsp?pageId=445" target="_blank" class="tooltip-link">Xem nguồn</a></span></span></p></div>
-                <div class="card p-4 text-center"><h4 class="font-bold">Thặng dư TM (9 tháng)</h4><p class="text-3xl font-bold text-green-700 mt-1">13,31 <span class="text-xl">tỷ USD</span><span class="tooltip-container"><span class="tooltip-trigger">[i]</span><span class="tooltip-text">Nguồn 3: Công bố và thông tin - Tổng cục Hải quan.<a href="http://customs.gov.vn:8228/index.jsp?pageId=445" target="_blank" class="tooltip-link">Xem nguồn</a></span></span></p></div>
-                <div class="card p-4 text-center"><h4 class="font-bold">XK NLS (8 tháng)</h4><p class="text-3xl font-bold text-yellow-700 mt-1">45,37 <span class="text-xl">tỷ USD</span></p><p class="highlight-stat">(+12%) <span class="tooltip-container"><span class="tooltip-trigger">[i]</span><span class="tooltip-text">Nguồn 8: Xuất khẩu nông, lâm, thủy sản tháng 8/2025: Tăng tốc mạnh, nhiều thách thức.<a href="https://ispae.vn/vn/tID13178_xuat-khau-nong-lam-thuy-san-thang-82025-tang-toc-manh-nhieu-thach-thuc.html" target="_blank" class="tooltip-link">Xem nguồn</a></span></span></p></div>
-                <div class="card p-4 text-center"><h4 class="font-bold">PMI Sản xuất (T9)</h4><p class="text-3xl font-bold text-indigo-700 mt-1">50,4 <span class="text-xl">điểm</span><span class="tooltip-container"><span class="tooltip-trigger">[i]</span><span class="tooltip-text">Nguồn 1: Ngành sản xuất Việt Nam cải thiện nhẹ trong tháng 9, số lượng đơn hàng mới tăng trở lại.<a href="https://vneconomy.vn/nganh-san-xuat-viet-nam-cai-thien-nhe-trong-thang-9-so-luong-don-hang-moi-tang-tro-lai.htm" target="_blank" class="tooltip-link">Xem nguồn</a></span></span></p></div>
+        <!-- Tóm tắt quản trị -->
+        <section>
+          <h2 class="section-title text-2xl md:text-3xl mb-4 md:mb-6">Tóm tắt Quản trị</h2>
+          <div class="card p-4 md:p-8 bg-lime-50 border-l-8 border-green-800">
+            <p class="text-base md:text-lg text-gray-700 leading-relaxed">
+              Tháng 9/2025 là giai đoạn tương phản: xuất khẩu nông sản duy trì đà tăng (đặc biệt rau quả), nhưng ngành đối mặt thách thức từ <b>thiên tai (Bão số 10)</b>,
+              <b>sụt giảm giá trị lúa gạo</b>, và <b>bất định chính sách thương mại</b>.
+            </p>
+            <div class="mt-6 md:mt-8 grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
+              <div>
+                <h3 class="font-bold text-lg md:text-xl text-red-800 flex items-center mb-2 md:mb-3"><i class="ph-bold ph-shield-warning mr-2"></i>Các rủi ro chính</h3>
+                <ul class="space-y-2 md:space-y-3 list-disc list-inside text-sm md:text-base">
+                  <li><b>Đường:</b> Giá thế giới thấp + rà soát thuế CBPG/CTC với đường Thái Lan → rủi ro cạnh tranh & biên lợi nhuận.</li>
+                  <li><b>Chuỗi cung ứng:</b> Thời tiết cực đoan → nguy cơ ách tắc logistics, thiệt hại vùng nguyên liệu.</li>
+                  <li><b>Gạo:</b> Áp lực giá & đầu ra sau khi Philippines tạm ngưng nhập khẩu 60 ngày từ 01/9/2025.</li>
+                </ul>
+              </div>
+              <div>
+                <h3 class="font-bold text-lg md:text-xl text-green-800 flex items-center mb-2 md:mb-3"><i class="ph-bold ph-rocket-launch mr-2"></i>Cơ hội & động lực</h3>
+                <ul class="space-y-2 md:space-y-3 list-disc list-inside text-sm md:text-base">
+                  <li><b>Dừa & F&amp;B:</b> Giá dừa khô kỷ lục <b class="text-green-700">~215.000đ/chục</b> → cơ hội mở rộng danh mục F&amp;B giá trị cao.</li>
+                  <li><b>Thị trường Carbon:</b> Thí điểm từ 2025 → tiềm năng hóa doanh từ tín chỉ carbon cho canh tác bền vững.</li>
+                </ul>
+              </div>
             </div>
-            <div class="card p-6"><p class="text-center text-lg">Ngành nông nghiệp tiếp tục là điểm sáng, hướng tới mục tiêu xuất khẩu <span class="font-bold text-2xl text-green-700">65 tỷ USD</span> cho cả năm 2025.<span class="tooltip-container"><span class="tooltip-trigger">[i]</span><span class="tooltip-text">Nguồn 4: Xuất khẩu nông sản tăng trưởng, hướng tới 65 tỉ USD - Báo Lao Động.<a href="https://laodong.vn/kinh-doanh/xuat-khau-nong-san-tang-truong-huong-toi-65-ti-usd-1565696.ldo" target="_blank" class="tooltip-link">Xem nguồn</a></span></span> Tuy nhiên, có sự phân hóa rõ rệt: Ngành rau quả thành công, trong khi lúa gạo sụt giảm mạnh về giá trị dù tăng sản lượng.<span class="tooltip-container"><span class="tooltip-trigger">[i]</span><span class="tooltip-text">Nguồn 9: Xuất khẩu rau quả trong 9 tháng năm 2025 đạt hơn 6 tỷ USD - báo Hải Phòng.<a href="https://baohaiphong.vn/xuat-khau-rau-qua-trong-9-thang-nam-2025-dat-hon-6-ty-usd-522104.html" target="_blank" class="tooltip-link">Xem nguồn</a></span></span></p></div>
-
-            <!-- 1.2 Chính sách -->
-            <h3 class="text-2xl font-bold text-green-800 mt-10 mb-4">1.2. Chính sách và Môi trường Pháp lý</h3>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="card p-6">
-                    <h4 class="font-bold text-lg mb-3">Văn bản Pháp quy Quan trọng</h4>
-                    <ul class="space-y-3 list-disc list-inside">
-                        <li><span class="font-semibold">Công điện 150/CĐ-TTg (29/8/2025):</span> Siết chặt truy xuất nguồn gốc, đảm bảo chất lượng nông sản xuất khẩu.<span class="tooltip-container"><span class="tooltip-trigger">[i]</span><span class="tooltip-text">Nguồn 13: Tăng cường truy xuất nguồn gốc, đảm bảo chất lượng nông, lâm, thủy sản xuất khẩu.<a href="https://tapchikinhtetaichinh.vn/tang-cuong-truy-xuat-nguon-goc-dam-bao-chat-luong-nong-lam-thuy-san-xuat-khau.html" target="_blank" class="tooltip-link">Xem nguồn</a></span></span></li>
-                        <li><span class="font-semibold">Nghị định 183/2025/NĐ-CP & 119/2025/NĐ-CP:</span> Về lâm nghiệp và giảm phát thải khí nhà kính.<span class="tooltip-container"><span class="tooltip-trigger">[i]</span><span class="tooltip-text">Nguồn 16: Chính sách nông nghiệp và môi trường có hiệu lực từ 1/8.<a href="https://nongnghiepmoitruong.vn/chinh-sach-nong-nghiep-va-moi-truong-co-hieu-luc-tu-1-8-d765528.html" target="_blank" class="tooltip-link">Xem nguồn</a></span></span></li>
-                    </ul>
-                </div>
-                 <div class="card p-6">
-                    <h4 class="font-bold text-lg mb-3">Mục tiêu & Hỗ trợ từ Chính phủ</h4>
-                     <ul class="space-y-3 list-disc list-inside">
-                        <li>Đặt mục tiêu tăng trưởng ngành <span class="font-semibold">3,5% - 4%</span> trong năm 2025.<span class="tooltip-container"><span class="tooltip-trigger">[i]</span><span class="tooltip-text">Nguồn 14: Thủ tướng: Năm 2025 ngành nông nghiệp phải tăng tốc bứt phá, tăng trưởng 3,5%-4%.<a href="https://vov.vn/chinh-tri/thu-tuong-nam-2025-nganh-nong-nghiep-phai-tang-toc-but-pha-tang-truong-35-4-post1145043.vov" target="_blank" class="tooltip-link">Xem nguồn</a></span></span></li>
-                        <li>Tiến hành <span class="font-semibold">Tổng điều tra nông thôn, nông nghiệp 2025</span> để cung cấp dữ liệu hoạch định.<span class="tooltip-container"><span class="tooltip-trigger">[i]</span><span class="tooltip-text">Nguồn 18: Từ 1/7: Tổng điều tra nông thôn, nông nghiệp năm 2025.<a href="https://xaydungchinhsach.chinhphu.vn/tu-1-7-tong-dieu-tra-nong-thon-nong-nghiep-nam-2025-119250508134552326.htm" target="_blank" class="tooltip-link">Xem nguồn</a></span></span></li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- 1.3 Thiên tai -->
-             <h3 class="text-2xl font-bold text-green-800 mt-10 mb-4">1.3. Tác động từ Thiên tai và Biến đổi Khí hậu</h3>
-             <div class="card p-6 bg-red-50/50 border-l-4 border-red-500">
-                <p>Tháng 9 là tháng thời tiết cực đoan với <span class="font-bold">4 cơn bão liên tiếp</span> trên Biển Đông.<span class="tooltip-container"><span class="tooltip-trigger">[i]</span><span class="tooltip-text">Nguồn 19: 4 cơn bão liên tiếp trong tháng 9, dự báo tháng 10 thời tiết còn nhiều cực đoan.<a href="https://baomoi.com/4-con-bao-lien-tiep-trong-thang-9-du-bao-thang-10-thoi-tiet-con-nhieu-cuc-doan-c53382722.epi" target="_blank" class="tooltip-link">Xem nguồn</a></span></span> <span class="font-bold">Bão số 10 (Bualoi)</span>, cơn bão mạnh nhất năm, gây thiệt hại kinh tế ước tính <span class="highlight-stat-neg">hàng nghìn tỷ đồng</span>.<span class="tooltip-container"><span class="tooltip-trigger">[i]</span><span class="tooltip-text">Nguồn 26: Bão số 10 gây thiệt hại nặng nề, Thủ tướng chỉ đạo tập trung khắc phục nhanh hậu quả.<a href="https://baochinhphu.vn/thu-tuong-chi-dao-tap-trung-khac-phuc-nhanh-hau-qua-bao-so-10-va-mua-lu-102251002021745459.htm" target="_blank" class="tooltip-link">Xem nguồn</a></span></span></p>
-                <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div><span class="font-semibold">Tây Ninh:</span> Thiệt hại 9 tháng đầu năm hơn <span class="highlight-stat-neg">8,2 tỷ đồng</span>.<span class="tooltip-container"><span class="tooltip-trigger">[i]</span><span class="tooltip-text">Nguồn 31: Tây Ninh thiệt hại hơn 8,2 tỷ đồng do thiên tai trong 9 tháng năm 2025.<a href="https://thuonghieucongluan.com.vn/tay-ninh-thiet-hai-hon-8-2-ty-dong-do-thien-tai-trong-9-thang-nam-2025-a283075.html" target="_blank" class="tooltip-link">Xem nguồn</a></span></span></div>
-                    <div><span class="font-semibold">Gia Lai, Khánh Hòa, Ninh Thuận:</span> Nguy cơ ngập úng, ảnh hưởng chất lượng nông sản.</div>
-                </div>
-             </div>
-        </section>
-        
-        <hr class="my-16 border-t-2 border-green-200">
-
-        <!-- Phần 2: Phân tích thị trường -->
-        <section class="mb-16">
-            <h2 class="section-title text-3xl mb-8">Phần 2: Phân Tích Các Thị Trường Nông Sản Trọng Yếu</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <!-- Cột Trái: Thách thức -->
-                <div class="card p-6">
-                    <h3 class="text-2xl font-bold mb-4">2.1. Thị trường Mía đường: Tâm điểm Chính sách</h3>
-                    <p class="mb-4">Giá đường thế giới ở mức thấp (<span class="font-bold">16,40 US cents/lb</span>)<span class="tooltip-container"><span class="tooltip-trigger">[i]</span><span class="tooltip-text">Nguồn 36: Giá đường thế giới - cập nhật giá trực tuyến liên tục.<a href="https://hct.vn/tin-tuc/gia-duong-the-gioi-cap-nhat-gia-truc-tuyen-lien-tuc-1570" target="_blank" class="tooltip-link">Xem nguồn</a></span></span> và tiêu thụ nội địa chậm. Rủi ro chiến lược lớn nhất là <span class="font-semibold">Quyết định 1686/QĐ-BCT</span> của Bộ Công Thương về việc rà soát cuối kỳ thuế CBPG & CTC đối với đường Thái Lan.<span class="tooltip-container"><span class="tooltip-trigger">[i]</span><span class="tooltip-text">Nguồn 44: Bộ Công Thương ban hành Quyết định rà soát cuối kỳ việc áp dụng biện pháp chống bán phá giá và chống trợ cấp...<a href="https://moit.gov.vn/tin-tuc/thi-truong-nuoc-ngoai/tieu-de-bo-cong-thuong-ban-hanh-quyet-dinh-ra-soat-cuoi-ky-viec-ap-dung-bien-phap-chong-ban-pha-gia-va-chong-tro-cap-doi.html" target="_blank" class="tooltip-link">Xem nguồn</a></span></span> Nếu thuế bị dỡ bỏ, đường Thái Lan giá rẻ sẽ gây ra cuộc chiến về giá khốc liệt.</p>
-                </div>
-                <div class="card p-6">
-                    <h3 class="text-2xl font-bold mb-4">2.2. Thị trường Lúa gạo: Thách thức "Được mùa, mất giá"</h3>
-                    <div class="flex items-center justify-around text-center bg-gray-50 p-4 rounded-lg mb-4">
-                        <div><p class="text-sm">Sản lượng XK (8T)</p><p class="text-3xl font-bold highlight-stat">+2,2%</p></div>
-                        <div><p class="text-sm">Giá trị XK (8T)</p><p class="text-3xl font-bold highlight-stat-neg">-17,5%</p></div>
-                        <div><p class="text-sm">Giá XK BQ (8T)</p><p class="text-3xl font-bold highlight-stat-neg">-19,3%</p></div>
-                    </div>
-                    <p>Áp lực gia tăng khi <span class="font-semibold">Philippines tạm dừng nhập khẩu gạo 60 ngày (từ 1/9/2025)</span><span class="tooltip-container"><span class="tooltip-trigger">[i]</span><span class="tooltip-text">Nguồn 12: Xuất khẩu gạo đối mặt với thách thức mới - VnEconomy.<a href="https://vneconomy.vn/xuat-khau-gao-doi-mat-voi-thach-thuc-moi.htm" target="_blank" class="tooltip-link">Xem nguồn</a></span></span>, khiến thị trường trong nước trầm lắng.<span class="tooltip-container"><span class="tooltip-trigger">[i]</span><span class="tooltip-text">Nguồn 11: Giá lúa gạo hôm nay ngày 28/9 và tuần qua: Thị trường trầm lắng.<a href="https://congthuong.vn/gia-lua-gao-hom-nay-ngay-28-9-va-tuan-qua-thi-truong-tram-lang-422760.html" target="_blank" class="tooltip-link">Xem nguồn</a></span></span> Chiến lược cần tập trung vào gạo chất lượng cao, hữu cơ để thoát khỏi cuộc chiến về giá.</p>
-                </div>
-                <!-- Cột Phải: Cơ hội -->
-                <div class="card p-6">
-                    <h3 class="text-2xl font-bold mb-4">2.3. Thị trường Dừa: "Cơn sốt" giá & Cơ hội Đầu tư</h3>
-                    <p class="mb-4">Giá dừa khô tại ĐBSCL tăng lên mức kỷ lục <span class="font-bold text-green-600 text-3xl">215.000đ/chục</span>, <span class="highlight-stat">gấp 3 lần</span> cùng kỳ năm trước.<span class="tooltip-container"><span class="tooltip-trigger">[i]</span><span class="tooltip-text">Nguồn 53: Giá dừa khô hôm nay Bến Tre, Trà Vinh, Vĩnh Long 30/09/2025.<a href="https://vnfoodpharmco.com/gia-dua-kho-hom-nay/" target="_blank" class="tooltip-link">Xem nguồn</a></span></span> Nguyên nhân chính là do nhu cầu xuất khẩu tăng cao (đặc biệt từ Trung Quốc) trong khi nguồn cung giảm. Đây là cơ hội đầu tư chiến lược để đa dạng hóa danh mục sản phẩm và thâm nhập chuỗi giá trị F&B.</p>
-                </div>
-                <div class="card p-6">
-                    <h3 class="text-2xl font-bold mb-4">2.4. Thị trường Chuối & Rau quả: Động lực Bền vững</h3>
-                    <div class="flex items-center justify-around text-center bg-gray-50 p-4 rounded-lg mb-4">
-                        <div><p class="text-sm">XK Rau quả (9T)</p><p class="text-2xl font-bold text-yellow-600">6,11 tỷ USD</p><p class="highlight-stat">(+8,3%)<span class="tooltip-container"><span class="tooltip-trigger">[i]</span><span class="tooltip-text">Nguồn 9: Xuất khẩu rau quả trong 9 tháng năm 2025 đạt hơn 6 tỷ USD.<a href="https://baohaiphong.vn/xuat-khau-rau-qua-trong-9-thang-nam-2025-dat-hon-6-ty-usd-522104.html" target="_blank" class="tooltip-link">Xem nguồn</a></span></span></p></div>
-                        <div><p class="text-sm">XK Chuối (6T)</p><p class="text-2xl font-bold text-yellow-600">233 tr.USD</p><p class="highlight-stat">(+55%)<span class="tooltip-container"><span class="tooltip-trigger">[i]</span><span class="tooltip-text">Nguồn 54: Chuối Việt Nam dẫn đầu thị phần tại Trung Quốc.<a href="https://baochinhphu.vn/chuoi-viet-nam-dan-dau-thi-phan-tai-trung-quoc-tien-gan-cau-lac-bo-ty-usd-102250814104254559.htm" target="_blank" class="tooltip-link">Xem nguồn</a></span></span></p></div>
-                    </div>
-                    <p>Chuối Việt Nam đang dần chiếm lĩnh thị phần tại Trung Quốc, vượt qua Philippines. Giá chuối tại vườn duy trì ở mức tốt (<span class="font-semibold">7.500 - 9.000 VNĐ/kg</span>)<span class="tooltip-container"><span class="tooltip-trigger">[i]</span><span class="tooltip-text">Nguồn 56: Giá Chuối Hôm Nay Bao Nhiêu? Cập Nhật Giá Chuối Các Loại.<a href="https://airnano.vn/gia-chuoi/" target="_blank" class="tooltip-link">Xem nguồn</a></span></span>, mang lại lợi nhuận cao và ổn định, là trụ cột tăng trưởng chiến lược.</p>
-                </div>
-            </div>
+          </div>
         </section>
 
-        <hr class="my-16 border-t-2 border-green-200">
-
-        <!-- Phần 3 & 4 -->
-        <section class="mb-12">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                <div>
-                    <h2 class="section-title text-3xl mb-8">Phần 3: Các Cơ Hội Chiến Lược Mới</h2>
-                    <div class="space-y-8">
-                        <div class="card p-6">
-                            <h3 class="font-bold text-2xl mb-4 text-sky-800">3.1. Chuyển dịch Ngành F&B</h3>
-                            <p class="mb-4">Dự báo tăng trưởng <span class="font-bold text-sky-600">9,6%</span> trong năm 2025<span class="tooltip-container"><span class="tooltip-trigger">[i]</span><span class="tooltip-text">Nguồn 58: Ngành F&B tại Việt Nam sẽ tiếp tục tăng trưởng 9,6% trong năm 2025.<a href="https://baochinhphu.vn/nganh-fb-tai-viet-nam-se-tiep-tuc-tang-truong-96-trong-nam-2025-102250319131429058.htm" target="_blank" class="tooltip-link">Xem nguồn</a></span></span>, được định hình bởi các xu hướng tiêu dùng mới: (1) Thực phẩm sạch, hữu cơ; (2) Cá nhân hóa sản phẩm; (3) Trải nghiệm kỹ thuật số; và (4) Sản phẩm nguồn gốc thực vật (plant-based).<span class="tooltip-container"><span class="tooltip-trigger">[i]</span><span class="tooltip-text">Nguồn 61: Xu Hướng Khởi Nghiệp F&B Trong Năm 2025: Cơ Hội và Lời Khuyên.<a href="https://tuongviethoasen.vn/khoi-nghiep-thanh-cong-nganh-fb/xu-huong-khoi-nghiep-fb-trong-nam-2025-co-hoi-va-loi-khuyen-dat-gia.html" target="_blank" class="tooltip-link">Xem nguồn</a></span></span></p>
-                        </div>
-                        <div class="card p-6">
-                            <h3 class="font-bold text-2xl mb-4 text-lime-800">3.2. Thị trường Carbon: "Kinh tế Xanh"</h3>
-                            <p class="mb-4">Chính phủ thí điểm sàn giao dịch từ <span class="font-bold">2025</span>, vận hành chính thức từ <span class="font-bold">2029</span>.<span class="tooltip-container"><span class="tooltip-trigger">[i]</span><span class="tooltip-text">Nguồn 62: Việt Nam sẽ thí điểm sàn giao dịch carbon từ 2025, vận hành chính thức vào 2029.<a href="https://vneconomy.vn/viet-nam-se-thi-diem-san-giao-dich-carbon-tu-2025-van-hanh-chinh-thuc-vao-2029.htm" target="_blank" class="tooltip-link">Xem nguồn</a></span></span> Đây là cơ hội "vàng" để thương mại hóa các hoạt động canh tác bền vững (vùng nguyên liệu hữu cơ, năng lượng tái tạo, kinh tế tuần hoàn...) và tạo ra dòng doanh thu hoàn toàn mới.</p>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <h2 class="section-title text-3xl mb-8">Phần 4: Đánh Giá Tác Động</h2>
-                     <div class="space-y-8">
-                        <div class="card p-6">
-                             <h3 class="font-bold text-2xl mb-4">4.1. Tác động lên Hoạt động Cốt lõi</h3>
-                             <p>Hoạt động kinh doanh cốt lõi (mía đường) đối mặt rủi ro kép: áp lực giá thấp và bất định chính sách thuế. Thời tiết cực đoan làm giảm chất lượng nguyên liệu và hiệu suất sản xuất. Chuỗi cung ứng bị đe dọa bởi bão lũ gây ách tắc giao thông<span class="tooltip-container"><span class="tooltip-trigger">[i]</span><span class="tooltip-text">Nguồn 30: Thiệt hại do cơn bão số 10 (Bualoi) gây ra ước tính khoảng 8.016 tỷ đồng.<a href="https://congly.vn/thiet-hai-do-con-bao-so-10-bualoi-gay-ra-uoc-tinh-khoang-8-016-ty-dong-494725.html" target="_blank" class="tooltip-link">Xem nguồn</a></span></span>, tăng chi phí và rủi ro tồn kho.</p>
-                        </div>
-                        <div class="card p-6">
-                            <h3 class="font-bold text-2xl mb-4">4.2. Tác động lên Sáng kiến Chiến lược</h3>
-                            <p>Các diễn biến thị trường khẳng định tính đúng đắn của chiến lược đẩy mạnh F&B. Sự "nóng" của thị trường dừa và xu hướng tiêu dùng lành mạnh cho thấy chỉ dựa vào mảng đường là không đủ. Thành công của các mảng F&B, dừa, chuối và tiềm năng từ thị trường carbon sẽ là yếu tố quyết định.</p>
-                        </div>
-                    </div>
-                </div>
+        <!-- Vĩ mô & chính sách & thiên tai -->
+        <section>
+          <h2 class="section-title text-2xl md:text-3xl mb-4 md:mb-6">Bối cảnh vĩ mô & chính sách</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+            <div class="card p-4 md:p-6">
+              <h3 class="font-bold text-lg md:text-xl mb-3">Kinh tế & hiệu suất ngành</h3>
+              <p class="text-sm md:text-base">Xuất nhập khẩu 9T đạt <b>637,22 tỷ USD</b> (+17,2% YoY), thặng dư <b>13,31 tỷ USD</b>. XK nông lâm thủy sản 8T: <b>45,37 tỷ USD</b> (+12%). Rau quả 9T: <b>~6,11 tỷ USD</b> (+8,3%). PMI T9: <b>50,4</b>.</p>
             </div>
+            <div class="card p-4 md:p-6">
+              <h3 class="font-bold text-lg md:text-xl mb-3">Chính sách nổi bật</h3>
+              <ul class="list-disc list-inside text-sm md:text-base space-y-2">
+                <li><b>Công điện 150/CĐ-TTg (29/8/2025):</b> siết truy xuất nguồn gốc, chất lượng XK.</li>
+                <li><b>Định hướng 2025:</b> tăng trưởng ngành <b>3,5%–4%</b>; hoàn thiện khung <b>thị trường carbon</b>.</li>
+                <li><b>NĐ 183/2025 &amp; 119/2025:</b> lâm nghiệp, giảm phát thải – nhấn mạnh bền vững.</li>
+              </ul>
+            </div>
+          </div>
+          <div class="card p-4 md:p-6 mt-4 md:mt-6 bg-red-50/50 border-l-4 border-red-500">
+            <h3 class="font-bold text-lg md:text-xl mb-2">Thiên tai & khí hậu</h3>
+            <p class="text-sm md:text-base">Tháng 9 có <b>4 cơn bão</b>; <b>Bão số 10 (Bualoi)</b> gây thiệt hại lớn (ước <span class="highlight-stat-neg">hàng nghìn tỷ đồng</span>). Tác động trực tiếp/gián tiếp tới vùng nguyên liệu & logistics.</p>
+          </div>
         </section>
-        
-    </div>
 
+        <!-- Thị trường -->
+        <section>
+          <h2 class="section-title text-2xl md:text-3xl mb-4 md:mb-6">Thị trường trọng yếu</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
+            <div class="card p-4 md:p-6">
+              <h3 class="text-xl font-bold mb-3">Mía đường</h3>
+              <p class="text-sm md:text-base">Giá đường thế giới mức thấp (có thời điểm ~<b>16,40 USc/lb</b>). Rủi ro lớn: <b>rà soát cuối kỳ thuế CBPG/CTC</b> với đường Thái Lan; nếu dỡ bỏ → áp lực giá/biên lợi nhuận.</p>
+            </div>
+            <div class="card p-4 md:p-6">
+              <h3 class="text-xl font-bold mb-3">Lúa gạo</h3>
+              <div class="flex flex-wrap items-center justify-around text-center bg-gray-50 p-3 rounded-lg mb-3 gap-3">
+                <div><p class="text-xs">Sản lượng XK (8T)</p><p class="text-2xl font-bold highlight-stat">+2,2%</p></div>
+                <div><p class="text-xs">Giá trị XK (8T)</p><p class="text-2xl font-bold highlight-stat-neg">-17,5%</p></div>
+                <div><p class="text-xs">Giá XK BQ (8T)</p><p class="text-2xl font-bold highlight-stat-neg">-19,3%</p></div>
+              </div>
+              <p class="text-sm md:text-base">Philippines tạm dừng nhập 60 ngày từ 01/9/2025 → thị trường trầm lắng. Cần dịch chuyển sang gạo chất lượng cao/hữu cơ & chế biến sâu.</p>
+            </div>
+            <div class="card p-4 md:p-6">
+              <h3 class="text-xl font-bold mb-3">Dừa</h3>
+              <p class="text-sm md:text-base">Giá dừa khô ĐBSCL kỷ lục <b class="text-green-700 text-lg">~215.000đ/chục</b> (<span class="highlight-stat">~3×</span> YoY) nhờ cầu XK (TQ) tăng, cung giảm → cơ hội mở rộng F&amp;B & chuỗi giá trị.</p>
+            </div>
+            <div class="card p-4 md:p-6">
+              <h3 class="text-xl font-bold mb-3">Chuối & Rau quả</h3>
+              <div class="flex flex-wrap items-center justify-around text-center bg-gray-50 p-3 rounded-lg mb-3 gap-3">
+                <div><p class="text-xs">XK Rau quả (9T)</p><p class="text-xl font-bold text-yellow-600">~6,11 tỷ USD</p><p class="highlight-stat text-xs">(+8,3%)</p></div>
+                <div><p class="text-xs">XK Chuối (6T)</p><p class="text-xl font-bold text-yellow-600">~233 tr.USD</p><p class="highlight-stat text-xs">(+55%)</p></div>
+              </div>
+              <p class="text-sm md:text-base">Chuối VN tăng thị phần tại TQ, giá vườn ~<b>7.500–9.000đ/kg</b> → lợi nhuận ổn định.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Bổ sung CHO AGRIS: HÀM Ý & HÀNH ĐỘNG -->
+        <section>
+          <h2 class="section-title text-2xl md:text-3xl mb-4 md:mb-6">Dành cho AgriS: Hàm ý & Hành động đề xuất</h2>
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6">
+            <div class="card p-4 md:p-6">
+              <h3 class="font-bold text-lg md:text-xl mb-2 text-green-800">Hàm ý chiến lược</h3>
+              <ul class="list-disc list-inside text-sm md:text-base space-y-2">
+                <li><b>Giảm phụ thuộc đường:</b> chuẩn bị kịch bản nếu thuế CBPG/CTC nới lỏng; rà soát chi phí, tối ưu tồn kho, hợp đồng giá linh hoạt.</li>
+                <li><b>Mở rộng “cụm dừa–F&amp;B”:</b> đánh giá nhanh M&amp;A/đối tác OEM; ưu tiên sản phẩm nước dừa, snack dừa, coconut-based dairy alt.</li>
+                <li><b>Chuối/rau quả:</b> đẩy hợp chuẩn GAP/chất lượng để giữ thị phần TQ; thử nghiệm private label với đối tác phân phối.</li>
+                <li><b>Carbon:</b> lập <i>carbon project pipeline</i> (vùng hữu cơ, sinh khối, tuần hoàn) để sẵn sàng giao dịch tín chỉ khi sàn thí điểm.</li>
+              </ul>
+            </div>
+            <div class="card p-4 md:p-6">
+              <h3 class="font-bold text-lg md:text-xl mb-2 text-sky-800">Hành động 30–60 ngày</h3>
+              <ul class="list-disc list-inside text-sm md:text-base space-y-2">
+                <li>Thiết lập <b>dashboard cảnh báo</b>: giá đường ICE, giá dừa ĐBSCL, giá gạo XK, thời tiết.</li>
+                <li>Đàm phán <b>hợp đồng nguyên liệu dừa</b> 6–9 tháng, chèn điều khoản điều chỉnh giá theo chỉ số.</li>
+                <li>Khởi động thử nghiệm <b>MRV carbon</b> cho 1–2 vùng nguyên liệu (chuối/dừa) – chuẩn hóa dữ liệu.</li>
+                <li>Chuẩn bị <b>SKU F&amp;B nhanh</b> (pilot) cho Tết: đồ uống dừa tự nhiên, snack trái cây sấy ít đường.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- Rủi ro & Ưu tiên -->
+        <section>
+          <h2 class="section-title text-2xl md:text-3xl mb-4 md:mb-6">Rủi ro chính & mức ưu tiên</h2>
+          <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-6">
+            <div class="card p-4 md:p-6">
+              <h3 class="font-bold mb-2">Rà soát thuế đường Thái Lan</h3>
+              <p class="text-sm">Mức ưu tiên: <b class="text-red-600">Rất cao</b> – chuẩn bị kịch bản giá/biên lợi nhuận; theo dõi chặt quyết định cuối kỳ.</p>
+            </div>
+            <div class="card p-4 md:p-6">
+              <h3 class="font-bold mb-2">Thiên tai & logistics</h3>
+              <p class="text-sm">Mức ưu tiên: <b class="text-orange-600">Cao</b> – phương án thay thế tuyến/ kho; bảo hiểm hàng hóa mùa bão.</p>
+            </div>
+            <div class="card p-4 md:p-6">
+              <h3 class="font-bold mb-2">Giá dừa tăng sốc</h3>
+              <p class="text-sm">Mức ưu tiên: <b class="text-amber-600">Trung bình–Cao</b> – khóa chi phí đầu vào qua hợp đồng chỉ số.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Footer nguồn -->
+        <section class="text-center mt-6 md:mt-10 pt-6 md:pt-8 border-t border-green-300">
+          <p class="text-gray-600 text-sm md:text-base">Nguồn: “Báo cáo Tình hình Nông nghiệp Tháng 9/2025” & tổng hợp từ báo chí/đơn vị chuyên ngành.</p>
+          <p class="text-xs md:text-sm text-gray-500 mt-1">Bản tin nội bộ AgriS.</p>
+        </section>
+      </section>
+
+      <!-- TAB: Tuần 1 -->
+      <section id="tab-w1" class="tab-panel hidden">
+        <div class="card p-4 md:p-6">
+          <h2 class="text-xl md:text-2xl font-bold mb-2">Tuần 1 (01–07/09)</h2>
+          <p class="text-sm md:text-base text-gray-700">Đang cập nhật nội dung chi tiết theo tuần (giá, chính sách, thiên tai, cơ hội bán hàng, rủi ro…).</p>
+        </div>
+      </section>
+
+      <!-- TAB: Tuần 2 -->
+      <section id="tab-w2" class="tab-panel hidden">
+        <div class="card p-4 md:p-6">
+          <h2 class="text-xl md:text-2xl font-bold mb-2">Tuần 2 (08–14/09)</h2>
+          <p class="text-sm md:text-base text-gray-700">Đang cập nhật…</p>
+        </div>
+      </section>
+
+      <!-- TAB: Tuần 3 -->
+      <section id="tab-w3" class="tab-panel hidden">
+        <div class="card p-4 md:p-6">
+          <h2 class="text-xl md:text-2xl font-bold mb-2">Tuần 3 (15–21/09)</h2>
+          <p class="text-sm md:text-base text-gray-700">Đang cập nhật…</p>
+        </div>
+      </section>
+
+      <!-- TAB: Tuần 4 -->
+      <section id="tab-w4" class="tab-panel hidden">
+        <div class="card p-4 md:p-6">
+          <h2 class="text-xl md:text-2xl font-bold mb-2">Tuần 4 (22–30/09)</h2>
+          <p class="text-sm md:text-base text-gray-700">Đang cập nhật…</p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    (function () {
+      // ===== View mode (Mobile/Desktop) with active state
+      const body = document.body;
+      const btnMobile = document.getElementById('btnMobile');
+      const btnDesktop = document.getElementById('btnDesktop');
+
+      const active = 'bg-green-600 text-white border-green-600 hover:bg-green-600 focus:ring-green-300';
+      const inactive = 'bg-white text-green-800 border-green-300 hover:bg-green-50 focus:ring-green-300';
+
+      function setButtonState(isCompact) {
+        btnMobile.setAttribute('aria-pressed', String(isCompact));
+        btnDesktop.setAttribute('aria-pressed', String(!isCompact));
+
+        [btnMobile, btnDesktop].forEach(btn => {
+          btn.classList.remove(
+            'bg-green-600','text-white','border-green-600','hover:bg-green-600',
+            'bg-white','text-green-800','border-green-300','hover:bg-green-50','focus:ring-green-300'
+          );
+          btn.classList.add('rounded-lg','px-3','py-1.5','text-sm','font-semibold','border','transition','focus:outline-none','focus:ring-2');
+        });
+
+        if (isCompact) {
+          btnMobile.classList.add(...active.split(' '));
+          btnDesktop.classList.add(...inactive.split(' '));
+        } else {
+          btnDesktop.classList.add(...active.split(' '));
+          btnMobile.classList.add(...inactive.split(' '));
+        }
+      }
+
+      const savedMode = localStorage.getItem('view-mode');
+      const initialCompact = savedMode === 'compact' || (!savedMode && window.innerWidth < 768);
+      if (initialCompact) body.classList.add('compact');
+      setButtonState(initialCompact);
+
+      function setMode(compact) {
+        if (compact) { body.classList.add('compact'); localStorage.setItem('view-mode', 'compact'); }
+        else { body.classList.remove('compact'); localStorage.setItem('view-mode', 'desktop'); }
+        setButtonState(compact);
+      }
+      btnMobile.addEventListener('click', () => setMode(true));
+      btnDesktop.addEventListener('click', () => setMode(false));
+
+      // ===== Tabs (Weekly issues)
+      const tabBtns = Array.from(document.querySelectorAll('.tab-btn'));
+      const panels = Array.from(document.querySelectorAll('.tab-panel'));
+      const savedTab = localStorage.getItem('agris-active-tab') || 'tab-month';
+
+      function activateTab(id) {
+        panels.forEach(p => p.classList.toggle('hidden', p.id !== id));
+        tabBtns.forEach(b => {
+          const on = b.dataset.tab === id;
+          b.classList.toggle('tab-active', on);
+          b.classList.toggle('tab-inactive', !on);
+          b.setAttribute('aria-selected', String(on));
+        });
+        localStorage.setItem('agris-active-tab', id);
+      }
+
+      // init states
+      activateTab(savedTab);
+
+      tabBtns.forEach(b => b.addEventListener('click', () => activateTab(b.dataset.tab)));
+
+      // Optional: auto-compact if user chưa chọn và màn hình nhỏ
+      let userSwitched = false;
+      btnMobile.addEventListener('click', () => (userSwitched = true));
+      btnDesktop.addEventListener('click', () => (userSwitched = true));
+      window.addEventListener('resize', () => {
+        if (userSwitched) return;
+        setMode(window.innerWidth < 768);
+      });
+    })();
+  </script>
 </body>
 </html>
+

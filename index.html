@@ -38,3 +38,38 @@ layout: none
     {%- if site.weeks -%}
       {%- assign list_weeks = site.weeks | sort: "date" | reverse -%}
     {%- else -%}
+      {%- assign list_weeks = "" | split: "" -%}  {% comment %} mảng rỗng để concat an toàn {% endcomment %}
+    {%- endif -%}
+
+    {%- assign issues = list_months | concat: list_weeks -%}
+
+    {%- if issues.size > 0 -%}
+      <div class="chips">
+        {%- for it in issues -%}
+          {%- assign is_month = it.type == "month" or it.layout == "month" -%}
+          {%- if is_month -%}
+            {%- assign mnum = it.date | date: "%-m" -%}
+            <a class="chip" href="{{ it.url | relative_url }}">
+              <span class="tag">Tháng</span>
+              Tổng hợp T{{ mnum }}/{{ it.date | date: "%Y" }}
+            </a>
+          {%- else -%}
+            <a class="chip" href="{{ it.url | relative_url }}">
+              <span class="tag">Tuần</span>
+              {{ it.title }}
+            </a>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    {%- else -%}
+      <div class="empty">
+        <strong>Chưa có bài nào trong <code>_months/</code> hoặc <code>_weeks/</code>.</strong>
+        <ul class="help">
+          <li>Mỗi số là 1 file trong <code>_months/</code> (VD: <code>2025-09.md</code>) hoặc <code>_weeks/</code> (VD: <code>2025-10-w1.md</code>).</li>
+          <li>Front-matter: <code>title</code>, <code>date</code>, <code>layout</code> (<code>month</code>|<code>week</code>), <code>type</code> (<code>month</code>|<code>week</code>).</li>
+        </ul>
+      </div>
+    {%- endif -%}
+  </div>
+</body>
+</html>

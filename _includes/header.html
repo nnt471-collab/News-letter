@@ -1,0 +1,18 @@
+<header class="text-center mb-6 md:mb-8">
+  <div class="flex items-center justify-center gap-2 text-green-800 font-extrabold uppercase tracking-wide">
+    <i class="ph ph-plant text-xl md:text-2xl"></i><span>AgriS</span>
+  </div>
+  <h1 class="text-3xl md:text-5xl font-extrabold text-green-900 mt-1">{{ page.title | default: site.title }}</h1>
+  <div class="mt-3 flex justify-center gap-3">
+    <button id="btnMobile" type="button" aria-pressed="false" class="rounded-lg px-3 py-1.5 text-sm font-semibold border border-green-300 text-green-800">📱 Giao diện Mobile</button>
+    <button id="btnDesktop" type="button" aria-pressed="true"  class="rounded-lg px-3 py-1.5 text-sm font-semibold border border-green-300 text-green-800">🖥️ Giao diện Máy tính</button>
+  </div>
+</header>
+<script>
+(function(){
+  const b=document.body,m=document.getElementById('btnMobile'),d=document.getElementById('btnDesktop');
+  const set=c=>{b.classList.toggle('compact',c);m.setAttribute('aria-pressed',c);d.setAttribute('aria-pressed',!c);localStorage.setItem('view-mode',c?'compact':'desktop')};
+  set((localStorage.getItem('view-mode')||'')==='compact' || window.innerWidth<768);
+  m.onclick=()=>set(true); d.onclick=()=>set(false);
+})();
+</script>

@@ -1,10 +1,36 @@
-title: "Điểm tin nhanh Ngành Nông Nghiệp • AgriS"
+# _config.yml — cấu hình tối thiểu cho Jekyll + GitHub Pages
+
+title: "News-letter"
+description: "Điểm tin nhanh Ngành Nông Nghiệp – AgriS"
+url: ""        # nếu dùng nnt471-collab.github.io/<repo>, để trống
+baseurl: ""    # để trống khi deploy bằng Pages trên nhánh main
+
 markdown: kramdown
-theme: nil
+highlighter: rouge
+
+# KHÔNG dùng theme cho site này (dùng layout tùy biến của chúng ta)
+# => Tuyệt đối KHÔNG để theme: nil
+# theme:
+
+# Collections cho các số điểm tin
 collections:
-  months:
+  issues:
     output: true
-    permalink: /thang/:name/
-  weeks:
-    output: true
-    permalink: /tuan/:period-:week/
+    permalink: /:collection/:name/
+
+# Giá trị mặc định cho từng issue/tuần
+defaults:
+  - scope:
+      path: ""
+      type: "issues"
+    values:
+      layout: week
+
+# Các thư mục cần build
+include:
+  - _includes
+  - _layouts
+  - assets
+
+# Plugins chuẩn mà GitHub Pages hỗ trợ (không bắt buộc remote theme)
+plugins: []

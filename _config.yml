@@ -1,47 +1,37 @@
-# _config.yml — cấu hình tối thiểu cho Jekyll + GitHub Pages
+# _config.yml — Jekyll + GitHub Pages
 
-title: "Điểm tin nhanh Ngành Nông Nghiệp – AgriS"
-description: "AgriS • Cập nhật định kỳ theo tháng/tuần"
-url: ""        # để trống nếu deploy bằng GitHub Pages (nhánh main)
-baseurl: ""    # để trống
+title: "News-letter"
+description: "Điểm tin nhanh Ngành Nông Nghiệp – AgriS"
+url: ""        # nếu dùng nnt471-collab.github.io/<repo>, để trống
+baseurl: ""    # để trống khi deploy trên nhánh main
 
 markdown: kramdown
 highlighter: rouge
 
-# KHÔNG đặt theme: nil (giữ nguyên comment để tránh lỗi)
+# KHÔNG dùng theme (dùng layout tùy biến)
 # theme:
 
-# Hai collections: tháng & tuần
+# Collections
 collections:
   months:
     output: true
     permalink: /:collection/:name/
-  weeks:
-    output: true
-    permalink: /:collection/:name/
+  # nếu sau này làm theo tuần, mở thêm:
+  # weeks:
+  #   output: true
+  #   permalink: /:collection/:name/
 
-# Giá trị mặc định theo từng collection
+# Mặc định cho months
 defaults:
   - scope:
-      path: "_months"
+      path: ""
       type: "months"
     values:
       layout: month
-      type: month
-  - scope:
-      path: "_weeks"
-      type: "weeks"
-    values:
-      layout: week
-      type: week
 
-# Các thư mục cần build
 include:
   - _includes
   - _layouts
   - assets
-  - _months
-  - _weeks
 
-# Plugins chuẩn (không bắt buộc)
 plugins: []

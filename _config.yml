@@ -1,9 +1,9 @@
 title: "News-letter"
 description: "Điểm tin nhanh Ngành Nông Nghiệp – AgriS"
 
-# KHAI BÁO ĐÚNG CHO PROJECT PAGES:
-url: "https://nnt471-collab.github.io"   # domain GitHub Pages của account
-baseurl: "/News-letter"                   # tên repo (bắt đầu bằng dấu /)
+# Project Pages:
+url: "https://nnt471-collab.github.io"   # domain của account
+baseurl: "/News-letter"                  # tên repo (có dấu / đầu)
 
 markdown: kramdown
 highlighter: rouge
@@ -16,6 +16,10 @@ collections:
   months:
     output: true
     permalink: /:collection/:name/
+  # mở nếu dùng tuần:
+  # weeks:
+  #   output: true
+  #   permalink: /:collection/:name/
 
 defaults:
   - scope: { path: "", type: "months" }

@@ -1,50 +1,67 @@
 ---
-layout: month
-title: "Điểm tin nhanh Ngành Nông Nghiệp"
+# trang chủ
 ---
 
-<div class="mb-4 flex flex-wrap items-center gap-3">
-  <label class="font-semibold text-green-900">Chọn kỳ:</label>
-  <select id="periodSelect" class="rounded-lg border border-green-300 px-3 py-1.5 text-sm"></select>
-  <span id="lastUpdated" class="text-xs md:text-sm text-green-700">Cập nhật: —</span>
-</div>
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Điểm tin nhanh Ngành Nông Nghiệp – AgriS</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body{font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:#F7FEE7}
+    .chip{border:1px solid #22c55e33;padding:.5rem .875rem;border-radius:9999px}
+    .chip.active{background:#16a34a;color:#fff;border-color:#16a34a}
+  </style>
+</head>
+<body class="text-gray-800">
+  <main class="mx-auto max-w-5xl p-4 sm:p-6 md:p-10">
+    <header class="mb-8 sm:mb-10 text-center">
+      <h1 class="text-3xl md:text-5xl font-extrabold text-green-900">Điểm tin nhanh Ngành Nông Nghiệp</h1>
+      <p class="text-green-700 md:text-xl mt-2">AgriS • Cập nhật định kỳ theo tháng/tuần</p>
+    </header>
 
-<nav class="mb-6 overflow-x-auto"><ul id="tabs" class="flex gap-2 min-w-max"></ul></nav>
-<div id="panels" class="space-y-8 md:space-y-12"></div>
+    <!-- Tabs (tự sinh từ collection _issues) -->
+    <div class="flex flex-wrap gap-3 mb-6">
+      {%- comment -%}
+        An toàn: nếu site.issues nil thì lấy từ site.collections['issues'].docs,
+        nếu vẫn không có thì gán mảng rỗng để tránh lỗi sort.
+      {%- endcomment -%}
+      {%- assign _issuesA = site.issues -%}
+      {%- if _issuesA == nil or _issuesA == empty -%}
+        {%- assign _issuesColl = site.collections['issues'] -%}
+        {%- if _issuesColl and _issuesColl.docs -%}
+          {%- assign _issuesA = _issuesColl.docs -%}
+        {%- else -%}
+          {%- assign _issuesA = "" | split: "," -%}
+        {%- endif -%}
+      {%- endif -%}
 
-<script>
-  const months = {{ site.months | sort: "period" | map: "to_liquid" | jsonify }};
-  const weeks  = {{ site.weeks  | sort: "week"   | map: "to_liquid" | jsonify }};
-</script>
-<script>
-(async function(){
-  const periodSelect=document.getElementById('periodSelect'), tabs=document.getElementById('tabs'), panels=document.getElementById('panels'), last=document.getElementById('lastUpdated');
-  const weeksByPeriod = weeks.reduce((m,w)=>{(m[w.period]=m[w.period]||[]).push(w);return m;},{});
-  const periods = [...new Set([...months.map(m=>m.period), ...Object.keys(weeksByPeriod)])].sort();
+      {%- assign issues_sorted = _issuesA | sort: 'date' | reverse -%}
+      {%- for post in issues_sorted -%}
+        <a class="chip {% if forloop.first %}active{% endif %}" href="{{ post.url | relative_url }}">
+          {{ post.title }}
+        </a>
+      {%- endfor -%}
 
-  periods.forEach(p=>{const opt=document.createElement('option');opt.value=p;opt.textContent=p.replace('-','/');periodSelect.appendChild(opt);});
-  const saved=localStorage.getItem('agris-period')||periods[0];periodSelect.value=saved;
+      {%- if issues_sorted == empty -%}
+        <span class="text-sm text-gray-600">Chưa có bài nào trong <code>_issues/</code>. Thêm file để bắt đầu.</span>
+      {%- endif -%}
+    </div>
 
-  async function render(pkey){
-    localStorage.setItem('agris-period',pkey);
-    tabs.innerHTML='';panels.innerHTML='';
-    const m=months.find(x=>x.period===pkey);const w=(weeksByPeriod[pkey]||[]);
-    last.textContent='Cập nhật: '+(m?.updated||(w[w.length-1]?.updated||'—'));
-    if(m){addTab(`th-${pkey}`,`Tổng hợp ${pkey.split('-')[1]}/${pkey.split('-')[0]}`,m.url);}
-    w.forEach(item=>{addTab(`w${item.week}-${pkey}`,`Tuần ${item.week}`,item.url);});
-    const first=tabs.querySelector('button');if(first)first.click();
-  }
-  function addTab(id,label,url){
-    const b=document.createElement('button');b.className='pill rounded-full px-3 py-1.5 text-sm font-semibold';b.textContent=label;
-    const panel=document.createElement('section');panel.id=id;panel.className='hidden';
-    b.onclick=async()=>{
-      Array.from(tabs.children).forEach(x=>x.classList.remove('active'));b.classList.add('active');
-      Array.from(panels.children).forEach(p=>p.classList.add('hidden'));panel.classList.remove('hidden');
-      if(!panel.dataset.loaded){const html=await fetch(url).then(r=>r.text());const tmp=document.createElement('div');tmp.innerHTML=html;const article=tmp.querySelector('article')||tmp.querySelector('main')||tmp;panel.innerHTML=article.innerHTML;panel.dataset.loaded='1';}
-    };
-    tabs.appendChild(b);panels.appendChild(panel);
-  }
-  await render(saved);
-  periodSelect.onchange=()=>render(periodSelect.value);
-})();
-</script>
+    <!-- Intro -->
+    <div class="bg-white rounded-xl shadow p-5">
+      <h2 class="font-extrabold text-green-800 text-xl mb-2">Cách dùng</h2>
+      <ul class="list-disc list-inside text-sm leading-7">
+        <li>Mỗi số (tháng/tuần) là một file trong thư mục <code>_issues/</code> (ví dụ: <code>2025-09.md</code>, <code>2025-10-w1.md</code>).</li>
+        <li>Front-matter cần có: <code>title</code>, <code>date</code>, <code>layout: week</code>, <code>type: month</code> hoặc <code>type: week</code>.</li>
+        <li>Trang này tự tạo danh sách “chip” theo thời gian (mới nhất trước), không cần sửa code.</li>
+      </ul>
+    </div>
+  </main>
+</body>
+</html>

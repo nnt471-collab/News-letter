@@ -2,21 +2,25 @@
 
 title: "News-letter"
 description: "Điểm tin nhanh Ngành Nông Nghiệp – AgriS"
-url: "https://nnt471-collab.github.io" # Có thể thêm URL đầy đủ
-baseurl: "/News-letter" # SỬA Ở ĐÂY - Đây là thay đổi quan trọng nhất
+url: ""          # nếu deploy dạng nnt471-collab.github.io/<repo>, để trống
+baseurl: ""      # để trống khi deploy trên nhánh main
 
 markdown: kramdown
 highlighter: rouge
 
-# KHÔNG dùng theme (dùng layout tùy biến)
-# theme:
+kramdown:
+  input: GFM            # hỗ trợ fenced code, table, v.v.
+  hard_wrap: false
+  syntax_highlighter_opts:
+    span:
+      line_numbers: false
 
 # Collections
 collections:
   months:
     output: true
     permalink: /:collection/:name/
-  # nếu sau này làm theo tuần, mở thêm:
+  # mở nếu cần dùng tuần:
   # weeks:
   #   output: true
   #   permalink: /:collection/:name/
@@ -28,10 +32,18 @@ defaults:
       type: "months"
     values:
       layout: month
+      type: month
+  # mở nếu xài weeks:
+  # - scope:
+  #     path: ""
+  #     type: "weeks"
+  #   values:
+  #     layout: week
+  #     type: week
 
 include:
   - _includes
   - _layouts
   - assets
 
-plugins: []
+plugins: []       # để trống cho GitHub Pages (không custom plugin)

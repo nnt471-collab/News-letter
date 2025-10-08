@@ -1,5 +1,5 @@
 ---
-layout: none
+layout: null
 permalink: /
 ---
 {%- assign list_months = site.months | sort: "date" | reverse -%}
@@ -9,22 +9,22 @@ permalink: /
   {%- assign list_weeks = "" | split: "" -%}
 {%- endif -%}
 {%- assign issues = list_months | concat: list_weeks -%}
- <!doctype html>
- <html lang="vi">
- <head>
- <meta charset="utf-8">
- <meta name="viewport" content="width=device-width, initial-scale=1">
- <title>{{ site.title | default: "Điểm tin nhanh Ngành Nông Nghiệp – AgriS" }}</title>
- <meta name="description" content="{{ site.description | default: 'Tin nhanh ngành Nông nghiệp, cập nhật định kỳ theo tháng/tuần' }}">
- 
- <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
- <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
- <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
- <script src="https://cdn.tailwindcss.com"></script>
- <script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
- <script src="https://unpkg.com/@phosphor-icons/web"></script>
- 
- <style>
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ site.title | default: "Điểm tin nhanh Ngành Nông Nghiệp – AgriS" }}</title>
+<meta name="description" content="{{ site.description | default: 'Tin nhanh ngành Nông nghiệp, cập nhật định kỳ theo tháng/tuần' }}">
+
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+<script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+<style>
   :root{
     --bg:#f5fbf7;
     --bg-secondary:#f0fdf4;
@@ -36,7 +36,7 @@ permalink: /
     --border:#bbf7d0;
     --shadow:0 24px 60px -40px rgba(6,95,70,0.65);
   }
-   *{box-sizing:border-box}
+  *{box-sizing:border-box}
   html,body{min-height:100%}
   body{
     margin:0;
@@ -270,11 +270,11 @@ permalink: /
   body.mode-compact .hero__panel{order:3;}
   body.mode-compact .issue-section{grid-template-columns:1fr;}
   body.mode-compact .issue-card{padding:16px 16px 18px;}
- </style>
- </head>
- <body>
+</style>
+</head>
+<body>
 <div class="page">
-   <header class="hero">
+  <header class="hero">
     <div>
       <span class="hero__eyebrow"><i class="ph ph-plant"></i> AgriS Newswire</span>
       <h1 class="hero__title">Điểm tin nhanh Ngành Nông Nghiệp</h1>
@@ -284,7 +284,7 @@ permalink: /
         <span class="pill"><i class="ph ph-chart-line-up"></i> KPI + Mermaid chart</span>
         <span class="pill"><i class="ph ph-lightning"></i> Tải nhanh, xem tại chỗ</span>
       </div>
-     </div>
+    </div>
     <div class="hero__panel">
       <div class="panel__title">
         <span><i class="ph ph-calendar-check"></i> Chọn bản tin</span>
@@ -309,9 +309,9 @@ permalink: /
           <div class="timeline__item"><i class="ph ph-info"></i> Chưa có dữ liệu mới.</div>
         {%- endif -%}
       </div>
-     </div>
-   </header>
- 
+    </div>
+  </header>
+
   <section class="issue-section">
     <div>
       {%- if issues.size > 0 -%}
@@ -350,13 +350,13 @@ permalink: /
       <div class="empty-state"><i class="ph ph-tray"></i> Chưa có bản tin nào. Vui lòng thêm nội dung trong thư mục <code>_months</code> hoặc <code>_weeks</code>.</div>
       {%- endif -%}
     </div>
- 
+
     <aside>
       <div class="viewer" id="viewer">
         <div class="viewer__header">
           <div class="viewer__title"><i class="ph ph-newspaper"></i> Nội dung nhanh</div>
           <div class="viewer__meta" id="viewerMeta"></div>
-         </div>
+        </div>
         <div class="inner" id="viewerInner">
           <div class="skeleton" style="width:62%"></div>
           <div class="skeleton" style="width:86%"></div>
@@ -365,17 +365,17 @@ permalink: /
       </div>
     </aside>
   </section>
- </div>
- 
- <script>
- (function(){
+</div>
+
+<script>
+(function(){
   const body=document.body;
   const modeButtons=document.querySelectorAll('[data-mode]');
   const viewer=document.getElementById('viewerInner');
   const viewerMeta=document.getElementById('viewerMeta');
   const cardsWrap=document.getElementById('issueGrid');
   let activeCard=null;
- 
+
   function setMode(mode){
     const isCompact=mode==='compact';
     body.classList.toggle('mode-compact',isCompact);
@@ -406,7 +406,7 @@ permalink: /
     const period=card.getAttribute('data-period');
     const updated=card.getAttribute('data-updated');
     const org=card.getAttribute('data-org');
- 
+
     const metaParts=[];
     if(period){
       if(type==='month') metaParts.push(`Kỳ: ${period}`);
@@ -417,10 +417,10 @@ permalink: /
     if(org) metaParts.push(org);
     viewerMeta.textContent = metaParts.join(' · ');
     viewer.innerHTML=`
-       <div class="skeleton" style="width:62%"></div>
-       <div class="skeleton" style="width:86%"></div>
-       <div class="skeleton" style="width:73%"></div>`;
- 
+      <div class="skeleton" style="width:62%"></div>
+      <div class="skeleton" style="width:86%"></div>
+      <div class="skeleton" style="width:73%"></div>`;
+
     try{
       const res=await fetch(url,{headers:{'x-requested-with':'fetch'}});
       if(!res.ok) throw new Error(res.statusText);
@@ -429,26 +429,26 @@ permalink: /
       const root=doc.querySelector('#issue-root')||doc.body;
       viewer.innerHTML=root.innerHTML;
       // re-render mermaid
-       if(window.mermaid){
-         mermaid.initialize({ startOnLoad:false, securityLevel:'loose' });
+      if(window.mermaid){
+        mermaid.initialize({ startOnLoad:false, securityLevel:'loose' });
         const codes=viewer.querySelectorAll('pre code.language-mermaid, pre code.mermaid');
-         codes.forEach((code,i)=>{
+        codes.forEach((code,i)=>{
           const src=code.textContent.trim();
           const pre=code.closest('pre');
           const container=document.createElement('div');
-           container.className='my-4';
+          container.className='my-4';
           pre?.parentNode?.replaceChild(container,pre);
           try{mermaid.render('mmdi-'+i,src,svg=>container.innerHTML=svg);}catch(e){container.innerHTML='<pre>'+src.replace(/</g,'&lt;')+'</pre>';}
-         });
-       }
+        });
+      }
       window.scrollTo({top:0,behavior:'smooth'});
     }catch(err){
       console.error(err);
       viewer.innerHTML='<div style="padding:18px;color:#b91c1c;font-weight:600">Không tải được nội dung. Vui lòng thử lại.</div>';
       viewerMeta.textContent='';
-     }
-   }
- 
+    }
+  }
+
   if(cardsWrap){
     cardsWrap.addEventListener('click',ev=>{
       const card=ev.target.closest('[data-href]');
@@ -456,7 +456,7 @@ permalink: /
       ev.preventDefault();
       loadIssue(card);
     });
- 
+
     const firstCard=cardsWrap.querySelector('[data-href]');
     if(firstCard){
       loadIssue(firstCard);
@@ -464,8 +464,8 @@ permalink: /
       viewer.innerHTML='<div style="padding:18px;color:#0f172a;opacity:.75">Thêm bản tin để hiển thị nội dung ở đây.</div>';
     }
   }
- })();
- </script>
- </body>
- </html>
- 
+})();
+</script>
+</body>
+</html>
+

@@ -8,6 +8,10 @@ baseurl: "/News-letter"
 markdown: kramdown
 highlighter: rouge
 
+# Ensure upcoming issues (ví dụ đã đặt ngày tương lai) vẫn hiển thị
+timezone: Asia/Ho_Chi_Minh
+future: true
+
 kramdown:
   input: GFM
   hard_wrap: false

@@ -1,6 +1,8 @@
 source "https://rubygems.org"
 
-# Static site build dependencies
-gem "jekyll", "~> 4.3.3"
+# Use the dependency set that GitHub Pages supports so the site builds
+# identically locally and in production.
+gem "github-pages", "~> 231", group: :jekyll_plugins
+
+# `jekyll serve` still depends on Webrick when run locally.
 gem "webrick", "~> 1.8"
-gem "kramdown-parser-gfm", "~> 1.1"

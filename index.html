@@ -1,157 +1,155 @@
 ---
 layout: none
 ---
-
 <!doctype html>
 <html lang="vi">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Điểm tin nhanh Ngành Nông Nghiệp – AgriS</title>
-<meta name="description" content="Tin nhanh ngành Nông nghiệp, cập nhật định kỳ theo tháng/tuần – TTC AgriS">
-
+<meta name="description" content="Báo cáo phân tích thị trường & tác động ngành Nông nghiệp, cập nhật định kỳ – TTC AgriS">
 <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
-<!-- Phosphor Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
 <script src="https://unpkg.com/@phosphor-icons/web"></script>
-
 <style>
-  :root{
-    --agr:#065f46; --agr-2:#064e3b; --chip:#ecfdf5; --chipb:#10b981;
-    --bg:#f7fee7; --line:#bbf7d0; --card:#ffffff;
-  }
-  *{box-sizing:border-box}
-  html,body{height:100%}
-  body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);margin:0;color:#0f172a}
-  .wrap{max-width:1120px;margin:0 auto;padding:28px 16px 52px}
-  .hero{
-    text-align:center;margin:0 0 18px; padding:26px 14px 22px;
-    background:linear-gradient(180deg, #f0fdf4 0%, #f7fee7 100%);
-    border:1px solid var(--line); border-radius:18px;
-  }
-  .title{font-size:clamp(28px,4.8vw,46px);color:var(--agr-2);margin:0;font-weight:800;letter-spacing:-.02em}
-  .subtitle{color:#166534;font-size:clamp(16px,3.6vw,20px);opacity:.95;margin-top:6px}
-  .controls{display:flex;justify-content:center;gap:10px;margin:14px 0 6px}
-  .btn{border:1px solid var(--chipb);background:var(--chip);color:var(--agr);border-radius:999px;padding:.45rem .85rem;font-weight:800;cursor:pointer}
-  .btn[aria-pressed="true"]{background:var(--agr);color:#ecfdf5;border-color:var(--agr)}
-  .chips{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:14px 0 18px}
-  .chip{display:inline-flex;align-items:center;gap:8px;padding:.55rem .9rem;border:1px solid var(--chipb);background:var(--chip);
-        color:var(--agr-2);border-radius:999px;font-weight:800;text-decoration:none;cursor:pointer;box-shadow:0 1px 0 rgba(16,185,129,.25)}
-  .chip:hover{transform:translateY(-1px);transition:.15s;box-shadow:0 6px 14px rgba(16,185,129,.22)}
-  .chip .tag{font-weight:800;font-size:.82em;background:#d1fae5;border:1px solid var(--chipb);padding:.05rem .45rem;border-radius:.6rem}
-  .viewer{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:14px;min-height:240px;box-shadow:0 10px 18px rgba(22,163,74,.08)}
-  .viewer .inner{padding:6px 6px 10px}
-  .skeleton{height:11px;background:#e3f4ea;border-radius:6px;margin:9px 0;animation:pulse 1.1s infinite ease-in-out}
-  @keyframes pulse{0%{opacity:.55}50%{opacity:1}100%{opacity:.55}}
-  .section-title{display:flex;align-items:center;gap:10px;font-size:1.1rem;margin:8px 0 2px;color:var(--agr-2);font-weight:800}
-  .section-title i{color:#059669}
-  /* compact mode */
-  body.compact .viewer{font-size:.98rem}
-  body.compact .title{font-size:1.6rem}
+    body {
+        font-family: 'Inter', sans-serif;
+        background-color: #f7fee7;
+        color: #1f2937;
+    }
+    .card {
+        background-color: white;
+        border-radius: 0.75rem;
+        border: 1px solid #dcfce7;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.07), 0 2px 4px -2px rgb(0 0 0 / 0.07);
+    }
+    .section-title {
+        font-weight: 800;
+        color: #166534; /* Darker Green */
+        border-bottom: 3px solid #86efac;
+        padding-bottom: 0.5rem;
+    }
+    .highlight-stat { font-weight: 700; color: #16a34a; }
+    .highlight-stat-neg { font-weight: 700; color: #dc2626; }
+    .chip {
+        display: inline-flex; align-items: center; gap: 8px;
+        padding: .55rem .9rem; border: 1px solid #10b981; background: #ecfdf5;
+        color: #064e3b; border-radius: 999px; font-weight: 700;
+        text-decoration: none; cursor: pointer; transition: all .2s;
+        box-shadow: 0 1px 0 rgba(16,185,129,.25);
+    }
+    .chip:hover, .chip.active {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 14px rgba(16,185,129,.22);
+        background: #065f46; color: #ecfdf5;
+    }
+    .skeleton {
+        height: 14px; background: #e3f4ea; border-radius: 6px;
+        margin: 12px 0; animation: pulse 1.2s infinite ease-in-out;
+    }
+    @keyframes pulse { 0%{opacity:.6} 50%{opacity:1} 100%{opacity:.6} }
+
+    /* Tooltip Styles (from your example) */
+    .tooltip-container { position: relative; display: inline-block; cursor: help; }
+    .tooltip-trigger {
+        font-size: 0.65em; font-weight: bold; color: #3b82f6;
+        vertical-align: super; margin-left: 2px; padding: 1px 5px;
+        border-radius: 4px; background-color: #eff6ff; border: 1px solid #bfdbfe;
+    }
+    .tooltip-text {
+        visibility: hidden; width: 320px; background-color: #1f2937;
+        color: #fff; text-align: left; border-radius: 6px; padding: 12px;
+        position: absolute; z-index: 10; bottom: 130%; left: 50%;
+        margin-left: -160px; opacity: 0; transition: opacity 0.3s;
+        font-size: 0.875rem; line-height: 1.5; font-weight: 400;
+        box-shadow: 0px 5px 15px rgba(0,0,0,0.3);
+    }
+    .tooltip-container:hover .tooltip-text { visibility: visible; opacity: 1; }
+    .tooltip-link {
+        display: block; margin-top: 8px; color: #60a5fa;
+        text-decoration: underline; word-break: break-all;
+    }
 </style>
 </head>
-<body>
-<div class="wrap">
-  <header class="hero">
-    <h1 class="title">Điểm tin nhanh Ngành Nông Nghiệp</h1>
-    <div class="subtitle">AgriS • Cập nhật định kỳ theo tháng/tuần</div>
+<body class="antialiased">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <header class="text-center mb-8 bg-white p-6 rounded-2xl border border-green-200 shadow-sm">
+        <h1 class="text-3xl md:text-5xl font-extrabold text-green-900 flex items-center justify-center gap-3">
+            <i class="ph-fill ph-chart-line-up text-green-600"></i>
+            <span>Báo Cáo Ngành Nông Nghiệp</span>
+        </h1>
+        <p class="text-lg md:text-xl text-green-700 mt-2">Phân Tích Chi Tiết Thị Trường & Tác Động – AgriS</p>
+    </header>
 
-    <div class="controls">
-      <button id="btnMobile" type="button" aria-pressed="false" class="btn"><i class="ph ph-device-mobile"></i> Giao diện Mobile</button>
-      <button id="btnDesktop" type="button" aria-pressed="true"  class="btn"><i class="ph ph-desktop-tower"></i> Giao diện Máy tính</button>
+    {%- assign list_months = site.months | sort: "date" | reverse -%}
+    {%- assign issues = list_months -%}
+    <div class="flex flex-wrap gap-4 justify-center mb-8" id="chips">
+        {%- for it in issues -%}
+            {%- assign mnum = it.date | date: "%-m" -%}
+            <a class="chip" data-href="{{ it.url | relative_url }}" data-title="{{ it.title | escape }}">
+                <i class="ph ph-calendar-check"></i>
+                <span>Báo cáo T{{ mnum }}/{{ it.date | date: "%Y" }}</span>
+            </a>
+        {%- endfor -%}
     </div>
 
-    <div class="section-title"><i class="ph ph-calendar-check"></i><span>Chọn bản điểm tin</span></div>
-  </header>
-
-  {%- assign list_months = site.months | sort: "date" | reverse -%}
-  {%- if site.weeks -%}
-    {%- assign list_weeks = site.weeks | sort: "date" | reverse -%}
-  {%- else -%}
-    {%- assign list_weeks = "" | split: "" -%}  {% comment %} mảng rỗng để concat an toàn {% endcomment %}
-  {%- endif -%}
-  {%- assign issues = list_months | concat: list_weeks -%}
-
-  <div class="chips" id="chips">
-    {%- for it in issues -%}
-      {%- assign is_month = it.type == "month" or it.layout == "month" -%}
-      <a class="chip" data-href="{{ it.url | relative_url }}" data-title="{{ it.title | escape }}">
-        <span class="tag">{% if is_month %}Tháng{% else %}Tuần{% endif %}</span>
-        {%- if is_month -%}
-          {%- assign mnum = it.date | date: "%-m" -%}
-          Tổng hợp T{{ mnum }}/{{ it.date | date: "%Y" }}
-        {%- else -%}
-          {{ it.title }}
-        {%- endif -%}
-      </a>
-    {%- endfor -%}
-  </div>
-
-  <div id="viewer" class="viewer">
-    <div class="inner" id="viewerInner">
-      <div class="skeleton" style="width:60%"></div>
-      <div class="skeleton" style="width:85%"></div>
-      <div class="skeleton" style="width:70%"></div>
+    <div id="viewer" class="min-h-[300px]">
+        <div id="viewerInner">
+            <div class="skeleton" style="width:60%"></div>
+            <div class="skeleton" style="width:85%"></div>
+            <div class="skeleton" style="width:40%; margin-top: 30px;"></div>
+            <div class="skeleton" style="width:70%"></div>
+            <div class="skeleton" style="width:75%"></div>
+        </div>
     </div>
-  </div>
 </div>
 
 <script>
 (function(){
-  // Toggle view-mode
-  const b=document.body, m=document.getElementById('btnMobile'), d=document.getElementById('btnDesktop');
-  const set=c=>{b.classList.toggle('compact',c); m.setAttribute('aria-pressed',c); d.setAttribute('aria-pressed',!c); localStorage.setItem('view-mode',c?'compact':'desktop')};
-  set((localStorage.getItem('view-mode')||'')==='compact' || window.innerWidth<768);
-  m.onclick=()=>set(true); d.onclick=()=>set(false);
+    const viewer = document.getElementById('viewerInner');
+    const chipsContainer = document.getElementById('chips');
+    const chips = chipsContainer.querySelectorAll('.chip');
+    let currentChip = null;
 
-  // SPA loader
-  const viewer = document.getElementById('viewerInner');
-  const chips  = document.getElementById('chips');
-  async function loadIssue(url){
-    viewer.innerHTML = `
-      <div class="skeleton" style="width:62%"></div>
-      <div class="skeleton" style="width:86%"></div>
-      <div class="skeleton" style="width:73%"></div>`;
-    try{
-      const res = await fetch(url, {headers:{'x-requested-with':'fetch'}});
-      const html = await res.text();
-      const doc  = new DOMParser().parseFromString(html,'text/html');
-      const root = doc.querySelector('#issue-root') || doc.body;
-      viewer.innerHTML = root.innerHTML;
+    async function loadIssue(url, chipElement){
+        viewer.innerHTML = `
+            <div class="skeleton" style="width:60%"></div>
+            <div class="skeleton" style="width:85%"></div>
+            <div class="skeleton" style="width:40%; margin-top: 30px;"></div>
+            <div class="skeleton" style="width:70%"></div>
+            <div class="skeleton" style="width:75%"></div>`;
 
-      // re-render Mermaid inside viewer
-      if(window.mermaid){
-        mermaid.initialize({ startOnLoad:false, securityLevel:'loose' });
-        const codes = viewer.querySelectorAll('pre code.language-mermaid, pre code.mermaid');
-        codes.forEach((code,i)=>{
-          const src = code.textContent.trim();
-          const pre = code.closest('pre');
-          const container = document.createElement('div');
-          container.className='my-4';
-          pre?.parentNode?.replaceChild(container, pre);
-          try{ mermaid.render('mmdi-'+i, src, svg => container.innerHTML = svg); }
-          catch(e){ container.innerHTML='<pre>'+src.replace(/</g,'&lt;')+'</pre>'; }
-        });
-      }
-      window.scrollTo({top:0, behavior:'smooth'});
-    }catch(e){
-      viewer.innerHTML='<div style="padding:12px;color:#b91c1c">Không tải được nội dung. Vui lòng thử lại.</div>';
+        if (currentChip) {
+            currentChip.classList.remove('active');
+        }
+        chipElement.classList.add('active');
+        currentChip = chipElement;
+
+        try {
+            const res = await fetch(url, {headers:{'x-requested-with':'fetch'}});
+            const html = await res.text();
+            const doc  = new DOMParser().parseFromString(html,'text/html');
+            const root = doc.querySelector('#issue-root') || doc.body;
+            viewer.innerHTML = root.innerHTML;
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        } catch(e) {
+            viewer.innerHTML='<div class="p-4 text-center text-red-700 bg-red-100 rounded-lg">Không tải được nội dung. Vui lòng thử lại.</div>';
+        }
     }
-  }
 
-  // click chips (load tại chỗ)
-  chips.addEventListener('click', (ev)=>{
-    const a = ev.target.closest('[data-href]');
-    if(!a) return;
-    ev.preventDefault();
-    loadIssue(a.getAttribute('data-href'));
-  });
+    chipsContainer.addEventListener('click', (ev) => {
+        const a = ev.target.closest('[data-href]');
+        if(!a) return;
+        ev.preventDefault();
+        loadIssue(a.getAttribute('data-href'), a);
+    });
 
-  // auto load số mới nhất
-  const first = chips.querySelector('[data-href]');
-  if(first) loadIssue(first.getAttribute('data-href'));
+    const first = chipsContainer.querySelector('[data-href]');
+    if(first) {
+        loadIssue(first.getAttribute('data-href'), first);
+    }
 })();
 </script>
 </body>

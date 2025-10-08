@@ -2,13 +2,22 @@
 layout: null
 permalink: /
 ---
-{%- assign list_months = site.months | sort: "date" | reverse -%}
-{%- if site.weeks -%}
-  {%- assign list_weeks = site.weeks | sort: "date" | reverse -%}
-{%- else -%}
-  {%- assign list_weeks = "" | split: "" -%}
+{%- assign empty_array = "" | split: "" -%}
+{%- assign list_months = empty_array -%}
+{%- if site.collections['months'] and site.collections['months'].docs -%}
+  {%- assign list_months = site.collections['months'].docs
+      | where_exp: "item", "item.date"
+      | sort: "date"
+      | reverse -%}
 {%- endif -%}
-{%- assign issues = list_months | concat: list_weeks -%}
+{%- assign list_weeks = empty_array -%}
+{%- if site.collections['weeks'] and site.collections['weeks'].docs -%}
+  {%- assign list_weeks = site.collections['weeks'].docs
+      | where_exp: "item", "item.date"
+      | sort: "date"
+      | reverse -%}
+{%- endif -%}
+{%- assign issues = list_months | concat: list_weeks | sort: "date" | reverse -%}
 <!doctype html>
 <html lang="vi">
 <head>

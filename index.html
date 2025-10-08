@@ -8,7 +8,7 @@ permalink: /
 {%- else -%}
   {%- assign list_weeks = "" | split: "" -%}
 {%- endif -%}
-{%- assign issues = list_months | concat: list_weeks -%}
+{%- assign issues = list_months | concat: list_weeks | sort: "date" | reverse -%}
 <!doctype html>
 <html lang="vi">
 <head>
@@ -357,6 +357,7 @@ permalink: /
           <div class="viewer__title"><i class="ph ph-newspaper"></i> Nội dung nhanh</div>
           <div class="viewer__meta" id="viewerMeta"></div>
         </div>
+        <div id="viewerStyles" aria-hidden="true" style="display:none"></div>
         <div class="inner" id="viewerInner">
           <div class="skeleton" style="width:62%"></div>
           <div class="skeleton" style="width:86%"></div>
@@ -373,8 +374,31 @@ permalink: /
   const modeButtons=document.querySelectorAll('[data-mode]');
   const viewer=document.getElementById('viewerInner');
   const viewerMeta=document.getElementById('viewerMeta');
+  const viewerStyles=document.getElementById('viewerStyles');
   const cardsWrap=document.getElementById('issueGrid');
   let activeCard=null;
+
+  const STYLE_ATTR='data-viewer-style';
+
+  function clearInjectedStyles(){
+    document.head.querySelectorAll(`[${STYLE_ATTR}]`).forEach(el=>el.remove());
+    if(viewerStyles) viewerStyles.innerHTML='';
+  }
+
+  function applyIssueStyles(doc){
+    const styleNodes=doc.querySelectorAll('head link[rel~="stylesheet"], head style');
+    styleNodes.forEach(node=>{
+      const clone=node.cloneNode(true);
+      clone.setAttribute(STYLE_ATTR,'');
+      if(clone.tagName.toLowerCase()==='link'){
+        document.head.appendChild(clone);
+      }else if(viewerStyles){
+        viewerStyles.appendChild(clone);
+      }else{
+        document.head.appendChild(clone);
+      }
+    });
+  }
 
   function setMode(mode){
     const isCompact=mode==='compact';
@@ -420,6 +444,7 @@ permalink: /
       <div class="skeleton" style="width:62%"></div>
       <div class="skeleton" style="width:86%"></div>
       <div class="skeleton" style="width:73%"></div>`;
+    clearInjectedStyles();
 
     try{
       const res=await fetch(url,{headers:{'x-requested-with':'fetch'}});
@@ -427,6 +452,7 @@ permalink: /
       const html=await res.text();
       const doc=new DOMParser().parseFromString(html,'text/html');
       const root=doc.querySelector('#issue-root')||doc.body;
+      applyIssueStyles(doc);
       viewer.innerHTML=root.innerHTML;
       // re-render mermaid
       if(window.mermaid){

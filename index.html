@@ -1,12 +1,21 @@
  (cd "$(git rev-parse --show-toplevel)" && git apply --3way <<'EOF' 
 diff --git a/index.html b/index.html
-index a8a1980d4389dd11d4baa138a8462947f8c45ed9..9ac1e2c2b74006f4745712412dbd9d7f0c90bc0f 100644
+index a8a1980d4389dd11d4baa138a8462947f8c45ed9..70e57c1cbc3d455b219e94ff46a192a656bd5e38 100644
 --- a/index.html
 +++ b/index.html
-@@ -1,152 +1,469 @@
+@@ -1,152 +1,470 @@
  ---
- layout: none
+-layout: none
++layout: null
++permalink: /
  ---
++{%- assign list_months = site.months | sort: "date" | reverse -%}
++{%- if site.weeks -%}
++  {%- assign list_weeks = site.weeks | sort: "date" | reverse -%}
++{%- else -%}
++  {%- assign list_weeks = "" | split: "" -%}
++{%- endif -%}
++{%- assign issues = list_months | concat: list_weeks -%}
  <!doctype html>
  <html lang="vi">
  <head>
@@ -324,13 +333,6 @@ index a8a1980d4389dd11d4baa138a8462947f8c45ed9..9ac1e2c2b74006f4745712412dbd9d7f
 +        </div>
 +      </div>
 +      <div class="timeline" id="issueTimeline">
-+        {%- assign list_months = site.months | sort: "date" | reverse -%}
-+        {%- if site.weeks -%}
-+          {%- assign list_weeks = site.weeks | sort: "date" | reverse -%}
-+        {%- else -%}
-+          {%- assign list_weeks = "" | split: "" -%}
-+        {%- endif -%}
-+        {%- assign issues = list_months | concat: list_weeks -%}
 +        {%- if issues.size > 0 -%}
 +          {%- for it in issues limit:4 -%}
 +            {%- assign is_month = it.type == "month" or it.layout == "month" -%}

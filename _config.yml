@@ -1,7 +1,7 @@
 title: "News-letter"
 description: "Điểm tin nhanh Ngành Nông Nghiệp – AgriS"
 
-# Project Pages (repo: News-letter)
+# Project Pages
 url: "https://nnt471-collab.github.io"
 baseurl: "/News-letter"
 
@@ -16,13 +16,15 @@ collections:
   months:
     output: true
     permalink: /:collection/:name/
-  # weeks:
-  #   output: true
-  #   permalink: /:collection/:name/
+  weeks:
+    output: true
+    permalink: /:collection/:name/
 
 defaults:
   - scope: { path: "", type: "months" }
     values: { layout: month, type: month }
+  - scope: { path: "", type: "weeks" }
+    values: { layout: week, type: week }
 
 include: [_includes, _layouts, assets]
 plugins: []

@@ -1,0 +1,27 @@
+{%- comment -%}
+Usage (ô KPI):
+{% include stat.html
+   label="Tổng XNK (9T)"
+   value="637,22"
+   unit="tỷ USD"
+   trend="+17,2%"
+   trend_type="up"  # up|down|flat
+   tip="Nguồn: Tổng cục Hải quan"
+   href="http://customs.gov.vn:8228/index.jsp?pageId=445"
+%}
+{%- endcomment -%}
+<div class="kpi-card">
+  <h4 class="kpi-title">{{ include.label }}</h4>
+  <p class="kpi-value">
+    <span class="kpi-number">{{ include.value }}</span>
+    {%- if include.unit -%} <span class="kpi-unit">{{ include.unit }}</span>{%- endif -%}
+    {%- if include.tip or include.href -%}
+      {% include tooltip.html text=include.tip href=include.href %}
+    {%- endif -%}
+  </p>
+  {%- if include.trend -%}
+    <p class="kpi-trend {{ include.trend_type | default: 'flat' }}">
+      <i class="ph ph-trend-{{ include.trend_type | default: 'flat' }}"></i> {{ include.trend }}
+    </p>
+  {%- endif -%}
+</div>

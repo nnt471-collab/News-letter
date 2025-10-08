@@ -1,4 +1,6 @@
 source "https://rubygems.org"
 
-# Gói chuẩn GitHub Pages (đã gom Jekyll + plugin hợp lệ)
-gem "github-pages", group: :jekyll_plugins
+# Static site build dependencies
+gem "jekyll", "~> 4.3.3"
+gem "webrick", "~> 1.8"
+gem "kramdown-parser-gfm", "~> 1.1"

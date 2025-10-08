@@ -24,10 +24,11 @@ layout: none
         border-radius: 0.75rem;
         border: 1px solid #dcfce7;
         box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.07), 0 2px 4px -2px rgb(0 0 0 / 0.07);
+        transition: all 0.2s ease-in-out;
     }
     .section-title {
         font-weight: 800;
-        color: #166534; /* Darker Green */
+        color: #166534;
         border-bottom: 3px solid #86efac;
         padding-bottom: 0.5rem;
     }
@@ -45,32 +46,26 @@ layout: none
         box-shadow: 0 6px 14px rgba(16,185,129,.22);
         background: #065f46; color: #ecfdf5;
     }
-    .skeleton {
-        height: 14px; background: #e3f4ea; border-radius: 6px;
-        margin: 12px 0; animation: pulse 1.2s infinite ease-in-out;
-    }
+    .skeleton { height: 14px; background: #e3f4ea; border-radius: 6px; margin: 12px 0; animation: pulse 1.2s infinite ease-in-out; }
     @keyframes pulse { 0%{opacity:.6} 50%{opacity:1} 100%{opacity:.6} }
-
-    /* Tooltip Styles (from your example) */
+    /* Tooltip Styles */
     .tooltip-container { position: relative; display: inline-block; cursor: help; }
-    .tooltip-trigger {
-        font-size: 0.65em; font-weight: bold; color: #3b82f6;
-        vertical-align: super; margin-left: 2px; padding: 1px 5px;
-        border-radius: 4px; background-color: #eff6ff; border: 1px solid #bfdbfe;
-    }
-    .tooltip-text {
-        visibility: hidden; width: 320px; background-color: #1f2937;
-        color: #fff; text-align: left; border-radius: 6px; padding: 12px;
-        position: absolute; z-index: 10; bottom: 130%; left: 50%;
-        margin-left: -160px; opacity: 0; transition: opacity 0.3s;
-        font-size: 0.875rem; line-height: 1.5; font-weight: 400;
-        box-shadow: 0px 5px 15px rgba(0,0,0,0.3);
-    }
+    .tooltip-trigger { font-size: 0.65em; font-weight: bold; color: #3b82f6; vertical-align: super; margin-left: 2px; padding: 1px 5px; border-radius: 4px; background-color: #eff6ff; border: 1px solid #bfdbfe; }
+    .tooltip-text { visibility: hidden; width: 320px; background-color: #1f2937; color: #fff; text-align: left; border-radius: 6px; padding: 12px; position: absolute; z-index: 10; bottom: 130%; left: 50%; margin-left: -160px; opacity: 0; transition: opacity 0.3s; font-size: 0.875rem; line-height: 1.5; font-weight: 400; box-shadow: 0px 5px 15px rgba(0,0,0,0.3); }
     .tooltip-container:hover .tooltip-text { visibility: visible; opacity: 1; }
-    .tooltip-link {
-        display: block; margin-top: 8px; color: #60a5fa;
-        text-decoration: underline; word-break: break-all;
-    }
+    .tooltip-link { display: block; margin-top: 8px; color: #60a5fa; text-decoration: underline; word-break: break-all; }
+    /* Button Styles */
+    .btn-view { border: 1px solid #4ade80; background: #f0fdf4; color: #166534; border-radius: 999px; padding: .45rem .85rem; font-weight: 600; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; }
+    .btn-view[aria-pressed="true"] { background: #166534; color: #f0fdf4; border-color: #166534; }
+    
+    /* Compact (Mobile) mode styles */
+    body.compact .card { padding: 0.75rem; }
+    body.compact h1 { font-size: 1.8rem !important; }
+    body.compact h2 { font-size: 1.3rem !important; }
+    body.compact h3 { font-size: 1.1rem !important; }
+    body.compact p, body.compact li, body.compact td, body.compact th { font-size: 0.95rem; }
+    body.compact .text-3xl { font-size: 1.5rem !important; }
+    body.compact .text-xl { font-size: 1rem !important; }
 </style>
 </head>
 <body class="antialiased">
@@ -81,6 +76,14 @@ layout: none
             <span>Báo Cáo Ngành Nông Nghiệp</span>
         </h1>
         <p class="text-lg md:text-xl text-green-700 mt-2">Phân Tích Chi Tiết Thị Trường & Tác Động – AgriS</p>
+        <div class="mt-4 flex justify-center gap-3">
+            <button id="btnMobile" type="button" aria-pressed="false" class="btn-view">
+                <i class="ph ph-device-mobile"></i> Giao diện Mobile
+            </button>
+            <button id="btnDesktop" type="button" aria-pressed="true" class="btn-view">
+                <i class="ph ph-desktop-tower"></i> Giao diện Máy tính
+            </button>
+        </div>
     </header>
 
     {%- assign list_months = site.months | sort: "date" | reverse -%}
@@ -99,43 +102,63 @@ layout: none
         <div id="viewerInner">
             <div class="skeleton" style="width:60%"></div>
             <div class="skeleton" style="width:85%"></div>
-            <div class="skeleton" style="width:40%; margin-top: 30px;"></div>
-            <div class="skeleton" style="width:70%"></div>
-            <div class="skeleton" style="width:75%"></div>
         </div>
     </div>
 </div>
 
 <script>
 (function(){
+    // --- PHẦN JS CHO NÚT BẤM ĐÃ ĐƯỢC KHÔI PHỤC ---
+    const b = document.body, m = document.getElementById('btnMobile'), d = document.getElementById('btnDesktop');
+    const setViewMode = isCompact => {
+        b.classList.toggle('compact', isCompact);
+        m.setAttribute('aria-pressed', isCompact);
+        d.setAttribute('aria-pressed', !isCompact);
+        localStorage.setItem('view-mode', isCompact ? 'compact' : 'desktop');
+    };
+    const isInitiallyCompact = (localStorage.getItem('view-mode') || '') === 'compact' || window.innerWidth < 768;
+    setViewMode(isInitiallyCompact);
+    m.onclick = () => setViewMode(true);
+    d.onclick = () => setViewMode(false);
+
+    // --- Phần SPA Loader ---
     const viewer = document.getElementById('viewerInner');
     const chipsContainer = document.getElementById('chips');
     const chips = chipsContainer.querySelectorAll('.chip');
     let currentChip = null;
 
     async function loadIssue(url, chipElement){
-        viewer.innerHTML = `
-            <div class="skeleton" style="width:60%"></div>
-            <div class="skeleton" style="width:85%"></div>
-            <div class="skeleton" style="width:40%; margin-top: 30px;"></div>
-            <div class="skeleton" style="width:70%"></div>
-            <div class="skeleton" style="width:75%"></div>`;
-
-        if (currentChip) {
-            currentChip.classList.remove('active');
-        }
+        viewer.innerHTML = `<div class="skeleton" style="width:60%"></div><div class="skeleton" style="width:85%"></div>`;
+        if (currentChip) { currentChip.classList.remove('active'); }
         chipElement.classList.add('active');
         currentChip = chipElement;
-
         try {
-            const res = await fetch(url, {headers:{'x-requested-with':'fetch'}});
+            const res = await fetch(url, { headers: { 'x-requested-with': 'fetch' } });
             const html = await res.text();
-            const doc  = new DOMParser().parseFromString(html,'text/html');
+            const doc = new DOMParser().parseFromString(html, 'text/html');
             const root = doc.querySelector('#issue-root') || doc.body;
             viewer.innerHTML = root.innerHTML;
-            window.scrollTo({top: 0, behavior: 'smooth'});
+
+            // Re-render Mermaid charts if they exist in the loaded content
+            if (window.mermaid) {
+                const mermaidBlocks = viewer.querySelectorAll('pre.mermaid-chart');
+                if (mermaidBlocks.length > 0) {
+                    mermaid.initialize({ startOnLoad: false, securityLevel: 'loose' });
+                    mermaidBlocks.forEach((block, i) => {
+                        const src = block.textContent.trim();
+                        const container = document.createElement('div');
+                        container.className = 'flex justify-center my-4';
+                        block.parentNode.replaceChild(container, block);
+                        try {
+                            mermaid.render('mmd-loaded-' + i, src, svg => { container.innerHTML = svg; });
+                        } catch (e) {
+                            container.innerHTML = '<pre>' + src.replace(/</g, '&lt;') + '</pre>';
+                        }
+                    });
+                }
+            }
         } catch(e) {
-            viewer.innerHTML='<div class="p-4 text-center text-red-700 bg-red-100 rounded-lg">Không tải được nội dung. Vui lòng thử lại.</div>';
+            viewer.innerHTML = '<div class="p-4 text-center text-red-700 bg-red-100 rounded-lg">Không tải được nội dung. Vui lòng thử lại.</div>';
         }
     }
 

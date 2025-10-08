@@ -1,0 +1,14 @@
+{%- comment -%}
+Usage:
+{% include tooltip.html text="Nguồn: Tổng cục Hải quan" href="http://..." %}
+Hoặc inline: 637,22 tỷ USD{% include tooltip.html text="Nguồn..." href="http://..." %}
+{%- endcomment -%}
+<span class="t" role="note" aria-label="Ghi chú nguồn">
+  <span class="t-dot" aria-hidden="true">[i]</span>
+  <span class="t-box">
+    {{ include.text }}
+    {%- if include.href -%}
+      <a href="{{ include.href }}" target="_blank" rel="noopener">Xem nguồn</a>
+    {%- endif -%}
+  </span>
+</span>
